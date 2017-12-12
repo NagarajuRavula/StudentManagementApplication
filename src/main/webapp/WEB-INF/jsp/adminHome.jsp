@@ -18,9 +18,9 @@
 			<h2>Student Management Application</h2>
 
 		</div>
+		<a id="logout" href="/logout" > Log out<i class="fa fa-sign-out"></i></a>
 		<h1>Welcome Admin</h1>
 		<a href=${pageContext.request.contextPath}/jsp/studentPersonalDetails.jsp>Add Student+</a><br> <br>
-		<a href=${pageContext.request.contextPath}/jsp/login.jsp>Home</a><br> <br>
 		<h3>Students List</h3>
 	</center>
 
@@ -37,6 +37,7 @@
 				<th>Father Name</th>
 				<th>Email</th>
 				<th>Gender</th>
+				<th>Father</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
@@ -49,8 +50,7 @@
 					<td>${student.getEmail()}</td>
 					<td>${student.getGender()}</td>
 					<td>${student.getFatherName()}</td>
-					<td><a
-					href=${pageContext.request.contextPath}/jsp/editStudentDetails.jsp?id=${student.getId()}>edit</a></td>
+					<td><a href='/editStudentDetails?email=${student.getEmail()}'>View/Edit</a></td>
 				<td><a href='./delete?id=${student.getId()}'>delete</a></td>
 				</tr>
 			   </c:forEach>

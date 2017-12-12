@@ -2,17 +2,16 @@ package com.student.app.dao;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.student.app.dto.Student;
 import com.student.app.repository.StudentRepository;
 
-@Component
 public class StudentDaoImpl implements StudentDao {
 
-	@Autowired
 	StudentRepository studentRepository;
+
+	public void setStudentRepository(StudentRepository studentRepository) {
+		this.studentRepository = studentRepository;
+	}
 
 	@Override
 	public List<Student> getAllStudents() {
@@ -22,13 +21,12 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public Student getStudentByEmail(String email) {
-
 		return studentRepository.getStudentByEmail(email);
 	}
 
 	@Override
-	public Student updateStudent(double attendence, int classrank, String email, String fatherName, String gender, int id,
-			double marks, String motherName, String name, String password, int presentClass) {
+	public Student updateStudent(double attendence, int classrank, String email, String fatherName, String gender,
+			int id, double marks, String motherName, String name, String password, int presentClass) {
 		Student student = new Student();
 		student.setAttendence(attendence);
 		student.setClassrank(classrank);
@@ -43,6 +41,12 @@ public class StudentDaoImpl implements StudentDao {
 		student.setPresentClass(presentClass);
 		return studentRepository.save(student);
 
+	}
+
+	@Override
+	public void deleteStudent(Long id) {
+		
+		
 	}
 
 }

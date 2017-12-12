@@ -25,7 +25,7 @@
 	
 	
 	<p id="logedInName">Logged in As: <b id="email">${student.getEmail()}</b></p>
-	<a id="logout" href="jsp/login.jsp" > Log out<i class="fa fa-sign-out"></i></a>
+	<a id="logout" href="/logout" > Log out<i class="fa fa-sign-out"></i></a>
 	 <h2> welcome ${student.getName()}</h2>
 	 
 	 <h3>Profile Information</h3>

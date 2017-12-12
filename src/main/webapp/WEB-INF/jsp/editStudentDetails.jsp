@@ -36,7 +36,7 @@
 			}
 		%>
 
-		<button id="backButton" onclick="location.href='adminHome.jsp'">Go
+		<button id="backButton" onclick="location.href='editGoBack'">Go
 			Back</button>
 		<button id="editButton" onclick="enableFileds()">Edit Details</button>
 

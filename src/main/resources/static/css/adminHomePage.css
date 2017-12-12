@@ -23,6 +23,13 @@
     transition: 0.3s;
 }
 
+a{
+	background-color: pink;
+}
+a#logout{
+	margin-left: 1030px;
+}
+
 .closebtn:hover {
     color: black;
 }

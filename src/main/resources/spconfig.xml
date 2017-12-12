@@ -1,0 +1,15 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+ 
+<beans>
+  <bean id="studentService" class="com.student.app.service.StudentServiceImpl" autowire="byType">
+  </bean>
+  <bean id="authenticationController" class="com.student.app.controller.AuthenticationController" autowire="byType">
+  </bean>
+  <bean id="editController" class="com.student.app.controller.EditController" autowire="byType">
+  </bean>
+  <bean id="deleteController" class="com.student.app.controller.DeleteController" autowire="byType">
+  </bean>
+  <bean id="studentDaoImpl" class="com.student.app.dao.StudentDaoImpl" autowire="byType">
+  </bean>
+</beans>

@@ -8,6 +8,7 @@ public interface StudentService {
 	public Student getStudentByEmail(String email);
     public Student updateStudent(double attendence,int classrank,String email,String fatherName,String gender,int id,
     		double marks,String motherName,String name,String password,int presentClass);
+    public void deleteStudent(Long id);
 }
 
 
