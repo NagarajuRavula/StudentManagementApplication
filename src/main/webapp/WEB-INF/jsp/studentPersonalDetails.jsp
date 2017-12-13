@@ -28,7 +28,7 @@
 				}
 			%>
 <div class="container">  
-  <form id="contact" action="studentEducationDetails.jsp" method="post" onsubmit="return checkGender() ">
+  <form id="contact" action="/studentPersonalDetails" method="post" onsubmit="return checkGender() ">
     <h3>Student registration form</h3>
     <h4>Enter the student personal data</h4>
     <fieldset>

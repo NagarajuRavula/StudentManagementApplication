@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/loginPage.css">
 </head>
 <body>
-	<script src=${pageContext.request.contextPath}/js/loginValidations.js></script>
+	<script src="/js/loginValidations.js"></script>
 	<center>
 	<div class="header">
 		<h2 >Student Management Application</h2>

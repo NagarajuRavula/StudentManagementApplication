@@ -10,6 +10,8 @@
   </bean>
   <bean id="deleteController" class="com.student.app.controller.DeleteController" autowire="byType">
   </bean>
+   <bean id="saveController" class="com.student.app.controller.SaveController" autowire="byType">
+  </bean>
   <bean id="studentDaoImpl" class="com.student.app.dao.StudentDaoImpl" autowire="byType">
   </bean>
 </beans>

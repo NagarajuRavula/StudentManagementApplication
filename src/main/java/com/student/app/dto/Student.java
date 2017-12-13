@@ -13,7 +13,7 @@ public class Student {
 	int id;
 	int presentClass, classrank;
 	double marks, attendence;
-	String name, email, fatherName, mothername, gender, password;
+	String name, email, fatherName, mothername, gender, password,role;
 
 	public int getId() {
 		return id;
@@ -25,6 +25,14 @@ public class Student {
 
 	public int getPresentClass() {
 		return presentClass;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public void setPresentClass(int presentClass) {

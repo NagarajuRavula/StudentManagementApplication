@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.studentwebapplication.beanfactory.*"
-	import="com.studentwebapplication.service.impl.*"
-	import="com.studentwebapplication.service.*"
-	import="java.io.FileInputStream" import="java.io.IOException"
-	import="java.util.Properties"
-	import="com.studentwebapplication.utils.ErrorProperties"%>
+	pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,27 +9,7 @@
 <link rel="stylesheet" href="/css/studentEducationDetailsPage.css">
 <body>
 <script src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
-	<%!String message = "";%>
-	<%
-		StudentManagementService studentManagementService = (StudentManagementService) ObjectFactory
-				.getInstance(StudentManagementServiceImpl.class);
-		Properties props = ErrorProperties.getProperty();
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-
-		boolean status = studentManagementService.isExistingStudent(email);
-		if (status == true) {
-			message = email + " " + props.getProperty("EXISTING_USER");
-
-			request.setAttribute("message", message);
-
-			RequestDispatcher rd = request.getRequestDispatcher("studentPersonalDetails.jsp");
-			rd.forward(request, response);
-		}
-		String fatherName = request.getParameter("fatherName");
-		String motherName = request.getParameter("motherName");
-		String gender = request.getParameter("gender");
-	%>
+	
 
 <html>
 <body>
@@ -46,20 +21,11 @@
 		</div>
 		<div class="container">
 		     
-			<form id="contact" action=${pageContext.request.contextPath}/save
+			<form id="contact" action="/saveStudent"
 				method="post">
 				<h3>Student registration form</h3>
 				<h4>Enter the student Educational data</h4>
 				
-<!-- 				 <p id="errorMessage">hiii</p> -->
- 
-
-				<input type='hidden' name='fatherName' value='<%=fatherName%>'>
-				<input type='hidden' name='motherName' value='<%=motherName%>'>
-				<input type='hidden' name='name' value='<%=name%>'> <input
-					type='hidden' name='email' value='<%=email%>'> <input
-					type='hidden' name='gender' value='<%=gender%>'>
-
 
 				<fieldset>
 					<input placeholder="Class Standard (1-10)" type="number"

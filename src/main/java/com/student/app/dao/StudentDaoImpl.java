@@ -44,9 +44,29 @@ public class StudentDaoImpl implements StudentDao {
 	}
 
 	@Override
-	public void deleteStudent(Long id) {
-		
+	public void deleteStudent(Integer id) {
+		studentRepository.delete(id);
+	}
+
+	@Override
+	public void saveStudent(double attendence, int classrank, String email, String fatherName, String gender,
+			double marks, String motherName, String name, String password, int presentClass) {
+		Student student = new Student();
+		student.setAttendence(attendence);
+		student.setClassrank(classrank);
+		student.setEmail(email);
+		student.setFatherName(fatherName);
+		student.setGender(gender);
+		student.setMarks(marks);
+		student.setMothername(motherName);
+		student.setName(name);
+		student.setRole("student");
+		student.setPassword(password);
+		student.setPresentClass(presentClass);
+		studentRepository.save(student);
 		
 	}
+
+	
 
 }

@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/css/adminHomePage.css">
 </head>
 <body>
-	<script src=${pageContext.request.contextPath}/js/adminHome.js></script>
+	<script src="/js/adminHome.js"></script>
 
 
 	<center>
@@ -20,7 +20,7 @@
 		</div>
 		<a id="logout" href="/logout" > Log out<i class="fa fa-sign-out"></i></a>
 		<h1>Welcome Admin</h1>
-		<a href=${pageContext.request.contextPath}/jsp/studentPersonalDetails.jsp>Add Student+</a><br> <br>
+		<a href=/addStudent>Add Student+</a><br> <br>
 		<h3>Students List</h3>
 	</center>
 

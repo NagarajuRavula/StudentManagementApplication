@@ -32,8 +32,17 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void deleteStudent(Long id) {
+	public void deleteStudent(Integer id) {
+		studentDao.deleteStudent(id);
+	}
+
+	@Override
+	public void saveStudent(double attendence, int classrank, String email, String fatherName, String gender,
+			double marks, String motherName, String name, String password, int presentClass) {
+		studentDao.saveStudent(attendence, classrank, email, fatherName, gender, marks, motherName, name, password, presentClass);
 		
 	}
+
+	
 
 }
