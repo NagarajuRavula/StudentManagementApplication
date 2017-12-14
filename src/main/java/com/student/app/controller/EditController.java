@@ -1,5 +1,7 @@
 package com.student.app.controller;
 
+import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
@@ -29,24 +31,36 @@ public class EditController {
 
 	@RequestMapping("/edit")
 	public String edit(@RequestParam("id") int id, @RequestParam("name") String name,
-			@RequestParam("email") String email, @RequestParam("originalEmail") String originalEail,
+			@RequestParam("email") String email, @RequestParam("originalEmail") String originalEmail,
 			@RequestParam("fatherName") String fatherName, @RequestParam("motherName") String motherName,
 			@RequestParam("gender") String gender, @RequestParam("presentClass") int presentClass,
 			@RequestParam("marks") double marks, @RequestParam("attendence") double attendence,
 			@RequestParam("classrank") int classrank, @RequestParam("password") String password,
 			HttpServletRequest request, ModelMap model) {
-		studentService.updateStudent(attendence, classrank, email, fatherName, gender, id, marks, motherName, name,
-				password, presentClass);
-		httpSession = request.getSession(false);
-		if (httpSession.getAttribute("role").equals("admin")) {
+		System.out.println("origibnal email:"+originalEmail);
+		System.out.println("new email:"+email);
+		Properties properties = studentService.getProperties();
+		if (!email.equals(originalEmail)) {
+			if (studentService.getStudentByEmail(email) != null) {
 
-			model.addAttribute("students", studentService.getAllStudents());
-			return "adminHome";
-		} else {
-			model.addAttribute("student", studentService.getStudentByEmail(email));
-			return "studentHome";
-
+				System.out.println("same esists------");
+				model.addAttribute("errorMessage", properties.getProperty("EXISTING_USER"));
+				model.addAttribute("student", studentService.getStudentByEmail(originalEmail));
+				return "editStudentDetails";
+			}
 		}
+			studentService.updateStudent(attendence, classrank, email, fatherName, gender, id, marks, motherName, name,
+					password, presentClass);
+			httpSession = request.getSession(false);
+			if (httpSession.getAttribute("role").equals("admin")) {
+
+				model.addAttribute("students", studentService.getAllStudents());
+				return "adminHome";
+			} else {
+				model.addAttribute("student", studentService.getStudentByEmail(email));
+				return "studentHome";
+
+			}
 	}
 
 	@RequestMapping("/editGoBack")

@@ -1,13 +1,19 @@
 package com.student.app.service;
 
 import java.util.List;
+import java.util.Properties;
 
 import com.student.app.dao.StudentDao;
 import com.student.app.dto.Student;
+import com.student.app.utils.ErrorProperties;
 
 public class StudentServiceImpl implements StudentService {
 	StudentDao studentDao;
 
+	ErrorProperties errorProperties;
+	public void setErrorProperties(ErrorProperties errorProperties) {
+		this.errorProperties=errorProperties;
+	}
 	public void setStudentDao(StudentDao studentDao) {
 		this.studentDao = studentDao;
 	}
@@ -41,6 +47,12 @@ public class StudentServiceImpl implements StudentService {
 			double marks, String motherName, String name, String password, int presentClass) {
 		studentDao.saveStudent(attendence, classrank, email, fatherName, gender, marks, motherName, name, password, presentClass);
 		
+	}
+
+	@Override
+	public Properties getProperties() {
+		
+		return errorProperties.getProperties();
 	}
 
 	

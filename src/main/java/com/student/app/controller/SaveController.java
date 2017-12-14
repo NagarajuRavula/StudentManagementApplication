@@ -1,5 +1,7 @@
 package com.student.app.controller;
 
+import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +33,16 @@ public class SaveController {
 			@RequestParam("motherName") String motherName, @RequestParam("fatherName") String fatherName,
 			@RequestParam("gender") String gender, HttpServletRequest request, ModelMap model) {
 
+		Properties properties = studentService.getProperties();
+		if (studentService.getStudentByEmail(email) != null) {
+			
+			model.addAttribute("errorMessage", email+" "+properties.getProperty("EXISTING_USER"));
+			model.addAttribute("sname",name);
+			model.addAttribute("semail", email);
+			model.addAttribute("sfatherName",fatherName);
+			model.addAttribute("smotherName",motherName);
+			return "studentPersonalDetails";
+		}
 		httpSession = request.getSession(false);
 		httpSession.setAttribute("sname", name);
 		httpSession.setAttribute("semail", email);

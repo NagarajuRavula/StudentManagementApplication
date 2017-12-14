@@ -1,5 +1,7 @@
 package com.student.app.controller;
 
+import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,10 +30,9 @@ public class AuthenticationController {
 	@RequestMapping("/authenticate")
 	public String Authenticate(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, ModelMap model) {
-
+		Properties properties = studentService.getProperties();
 		Student user = studentService.getStudentByEmail(email);
 		if (user != null) {
-
 			httpSession = request.getSession();
 			if (user.getRole().equals("admin")) {
 				if (user.getPassword().equals(password)) {
@@ -40,7 +41,8 @@ public class AuthenticationController {
 					model.addAttribute("students", studentService.getAllStudents());
 					return "adminHome";
 				} else {
-					return null;
+					model.addAttribute("errorMessage",properties.getProperty("INVALID_PASSWORD"));
+					return "login";
 				}
 			} else {
 				if (user.getPassword().equals(password)) {
@@ -49,13 +51,15 @@ public class AuthenticationController {
 					model.addAttribute("student", studentService.getStudentByEmail(email));
 					return "studentHome";
 				} else {
-					return null;
+					model.addAttribute("errorMessage",properties.getProperty("INVALID_PASSWORD"));
+					return "login";
 				}
 			}
 		}
 
 		else {
-			return null;
+			model.addAttribute("errorMessage",properties.getProperty("INVALID_USERNAME"));
+			return "login";
 		}
 	}
 
