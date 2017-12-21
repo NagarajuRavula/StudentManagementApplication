@@ -10,11 +10,10 @@ public interface StudentService {
 	public Student getStudentByEmail(String email);
     public Student updateStudent(double attendence,int classrank,String email,String fatherName,String gender,int id,
     		double marks,String motherName,String name,String password,int presentClass);
-    public void deleteStudent(Integer id);
     public void saveStudent(double attendence,int classrank,String email,String fatherName,String gender,
     		double marks,String motherName,String name,String password,int presentClass);
     public Properties getProperties();
-    
+    public int deleteById(int id);
 }
 
 

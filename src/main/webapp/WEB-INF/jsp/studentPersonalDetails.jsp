@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Student Personal Details</title>
-<link rel="stylesheet" href="/css/studentPersonalDetailsPage.css">
+<link rel="stylesheet" href=${pageContext.request.contextPath}/css/studentPersonalDetailsPage.css>
 </head>
 <body>
 	<script src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
@@ -20,7 +20,7 @@
               <p id="message"> Error: ${errorMessage}</p>
         </c:if>
 <div class="container">  
-  <form id="contact" action="/studentPersonalDetails" method="post" onsubmit="return checkGender() ">
+  <form id="contact" action=${pageContext.request.contextPath}/studentPersonalDetails method="post" onsubmit="return checkGender() ">
     <h3>Student registration form</h3>
     <h4>Enter the student personal data</h4>
     <fieldset>

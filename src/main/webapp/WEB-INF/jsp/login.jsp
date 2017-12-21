@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Login Page</title>
-<link rel="stylesheet" href="/css/loginPage.css">
+<link rel="stylesheet" href=${pageContext.request.contextPath}/css/loginPage.css>
 </head>
 <body>
-	<script src="/js/loginValidations.js"></script>
+	<script src=${pageContext.request.contextPath}/js/loginValidations.js></script>
 	<center>
 		<div class="header">
 			<h2>Student Management Application</h2>

@@ -10,12 +10,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>edit details</title>
 
-<link rel="stylesheet" href="/css/editStudentDetailsPage.css">
+<link rel="stylesheet" href=${pageContext.request.contextPath}/css/editStudentDetailsPage.css>
 </head>
 <body onload="temp()">
 
 	<script
-		src="/js/studentDetailsValidation.js"></script>
+		src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
 
 
 
@@ -36,8 +36,7 @@
 		<button id="editButton" onclick="enableFileds()">Edit Details</button>
 
 		<div class="container">
-			<form id="contact" action=${pageContext.request.contextPath}/edit
-				method="post">
+			<form id="contact" action=${pageContext.request.contextPath}/edit method="post">
 				<h3>Student Details</h3>
 				<h4>click on Edit button to change details</h4>
 				<fieldset id="formFields" disabled>
@@ -107,7 +106,7 @@
 							title="Student Login Password" required>
 					</fieldset>
 					<fieldset>
-						<button name="submit" type="submit" id="educational-submit">Update
+						<button name="submit" type="submit" id="educational-submit" onclick="editStudent(this)">Update
 							details</button>
 					</fieldset>
 

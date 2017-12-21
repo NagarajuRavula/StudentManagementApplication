@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,10 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Admin Home</title>
-<link rel="stylesheet" href="/css/adminHomePage.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href=${pageContext.request.contextPath}/css/adminHomePage.css>
 </head>
 <body>
-	<script src="/js/adminHome.js"></script>
+	<script src=${pageContext.request.contextPath}/js/adminHome.js></script>
 
 
 	<center>
@@ -18,9 +19,9 @@
 			<h2>Student Management Application</h2>
 
 		</div>
-		<a id="logout" href="/logout" > Log out<i class="fa fa-sign-out"></i></a>
+		<a id="logout" href=${pageContext.request.contextPath}/logout> Log out<i class="fa fa-sign-out"></i></a>
 		<h1>Welcome Admin</h1>
-		<a href=/addStudent>Add Student+</a><br> <br>
+		<a href=${pageContext.request.contextPath}/addStudent>Add Student+</a><br> <br>
 		<h3>Students List</h3>
 	</center>
 
@@ -42,7 +43,7 @@
 				<th>Delete</th>
 			</tr>
 
-				<c:forEach items="${students}" var="student">
+			<c:forEach items="${students}" var="student">
 				<tr>
 					<td>${student.getId()}</td>
 					<td>${student.getName()}</td>
@@ -50,34 +51,23 @@
 					<td>${student.getEmail()}</td>
 					<td>${student.getGender()}</td>
 					<td>${student.getFatherName()}</td>
-					<td><a href='/editStudentDetails?email=${student.getEmail()}'>View/Edit</a></td>
-				<td><a href='./delete?id=${student.getId()}'>delete</a></td>
+					<td><a href=${pageContext.request.contextPath}/editStudentDetails?email=${student.getEmail()}>View/Edit</a></td>
+					<td><a href=${pageContext.request.contextPath}/delete?id=${student.getId()} 
+						onclick="deleteStudent(this)" >delete</a></td>
 				</tr>
-			   </c:forEach>
-			
-			
-			
-
+			</c:forEach>
 		</table>
-	</div>
+	</div> 
 
 
 
+	<c:if test="${not empty errorMessage}">
+		<div class="alert">
+			<span class="closebtn">&times;</span> ${errorMessage}
+		</div>
+	</c:if>
 
-	<%!String message = "";%>
-	<%
-		message = (String) request.getAttribute("deleteMessage");
-	%>
-	<%
-		if (message != null) {
-	%>
-	<div class="alert">
-		<span class="closebtn">&times;</span>
-		<%=message%>
-	</div>
-	<%
-		}
-	%>
+
 
 
 	<script type="text/javascript">

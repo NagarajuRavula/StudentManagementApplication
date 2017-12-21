@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Student Education Details</title>
 </head>
-<link rel="stylesheet" href="/css/studentEducationDetailsPage.css">
+<link rel="stylesheet" href=${pageContext.request.contextPath}/css/studentEducationDetailsPage.css>
 <body>
 <script src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
 	
@@ -21,7 +21,7 @@
 		</div>
 		<div class="container">
 		     
-			<form id="contact" action="/saveStudent"
+			<form id="contact" action=${pageContext.request.contextPath}/saveStudent
 				method="post">
 				<h3>Student registration form</h3>
 				<h4>Enter the student Educational data</h4>

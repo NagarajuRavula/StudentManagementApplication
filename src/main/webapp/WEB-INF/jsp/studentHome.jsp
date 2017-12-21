@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Student Home</title>
-<link rel="stylesheet" href="/css/studentHomePage.css">
+<link rel="stylesheet" href=${pageContext.request.contextPath}/css/studentHomePage.css>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -25,7 +25,7 @@
 	
 	
 	<p id="logedInName">Logged in As: <b id="email">${student.getEmail()}</b></p>
-	<a id="logout" href="/logout" > Log out<i class="fa fa-sign-out"></i></a>
+	<a id="logout" href=${pageContext.request.contextPath}/logout > Log out<i class="fa fa-sign-out"></i></a>
 	 <h2> welcome ${student.getName()}</h2>
 	 
 	 <h3>Profile Information</h3>
@@ -46,7 +46,7 @@
 			<td>${student.getFatherName()}</td>
 			<td>${student.getEmail()}</td>
 			<td>${student.getGender()}</td>
-			<td><a href='/editStudentDetails?email=${student.getEmail()}'>View/Edit</a></td>
+			<td><a href=${pageContext.request.contextPath}/editStudentDetails?email=${student.getEmail()}>View/Edit</a></td>
 		</tr>
 		</table>
 	</div>
