@@ -52,8 +52,7 @@
 					<td>${student.getGender()}</td>
 					<td>${student.getFatherName()}</td>
 					<td><a href=${pageContext.request.contextPath}/editStudentDetails?email=${student.getEmail()}>View/Edit</a></td>
-					<td><a href=${pageContext.request.contextPath}/delete?id=${student.getId()} 
-						onclick="deleteStudent(this)" >delete</a></td>
+					<td><a href=${pageContext.request.contextPath}/delete?id=${student.getId()} >delete</a></td>
 				</tr>
 			</c:forEach>
 		</table>

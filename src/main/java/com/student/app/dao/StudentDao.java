@@ -14,5 +14,7 @@ public interface StudentDao {
 	 public void saveStudent(double attendence,int classrank,String email,String fatherName,String gender,
 	    		double marks,String motherName,String name,String password,int presentClass);
 	 public int deleteById(int id);
-	
+	 public void saveStudent(Student student);
+	 public Student getStudentById(int id);
+	 public void updateStudent(Student student);
 }

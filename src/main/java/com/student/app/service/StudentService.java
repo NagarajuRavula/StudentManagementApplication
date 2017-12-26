@@ -14,6 +14,9 @@ public interface StudentService {
     		double marks,String motherName,String name,String password,int presentClass);
     public Properties getProperties();
     public int deleteById(int id);
+    public void saveStudent(Student student);
+    public Student getStudentById(int id);
+    public void updateStudent(Student student);
 }
 
 

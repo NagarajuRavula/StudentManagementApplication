@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.student.app.service.StudentService;
@@ -25,13 +24,13 @@ public class SaveController {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/addStudent", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/addStudent")
 	public String addStudent(ModelMap model) {
         logger.info("addStudent() entered");
 		return "studentPersonalDetails";
 	}
 
-	@RequestMapping(value = "/studentPersonalDetails", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/studentPersonalDetails")
 	public String studentPersonalDetails(@RequestParam("name") String name, @RequestParam("email") String email,
 			@RequestParam("motherName") String motherName, @RequestParam("fatherName") String fatherName,
 			@RequestParam("gender") String gender, HttpServletRequest request, ModelMap model) {
@@ -55,7 +54,7 @@ public class SaveController {
 		return "studentEducationDetails";
 	}
 
-	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/saveStudent")
 	public String saveStudent(@RequestParam("presentclass") int presentClass, @RequestParam("marks") double marks,
 			@RequestParam("attendence") double attendence, @RequestParam("classrank") int classRank,
 			@RequestParam("password") String password, ModelMap model) {

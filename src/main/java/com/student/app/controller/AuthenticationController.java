@@ -25,14 +25,14 @@ public class AuthenticationController {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
+    
+	@RequestMapping(value = "/login")
 	public String homePage(ModelMap model) {
 		logger.info("homePage() entered");
 		return "login";
 	}
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/authenticate")
 	public String Authenticate(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, ModelMap model) {
 		logger.info("authenticate() entered with username:"+email);

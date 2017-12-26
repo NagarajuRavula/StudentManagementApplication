@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.student.app.service.StudentService;
 
@@ -22,7 +21,7 @@ public class DeleteController {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete")
 	public String delete(@PathParam("id") int id, ModelMap model) {
 		logger.info("delete() entered with id:" + id);
 		Properties properties = studentService.getProperties();

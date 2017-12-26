@@ -12,6 +12,14 @@
   </bean>
    <bean id="saveController" class="com.student.app.controller.SaveController" autowire="byType">
   </bean>
+   <bean id="deleteRestController" class="com.student.app.restcontroller.DeleteRestController" autowire="byType">
+  </bean>
+    <bean id="editRestController" class="com.student.app.restcontroller.EditRestController" autowire="byType">
+  </bean>
+    <bean id="saveRestController" class="com.student.app.restcontroller.SaveRestController" autowire="byType">
+  </bean>
+    <bean id="studentDataRestController" class="com.student.app.restcontroller.StudentDataRestController" autowire="byType">
+  </bean>
   <bean id="studentDaoImpl" class="com.student.app.dao.StudentDaoImpl" autowire="byType">
   </bean>
   <bean id="errorProperties" class="com.student.app.utils.ErrorProperties" autowire="byType">

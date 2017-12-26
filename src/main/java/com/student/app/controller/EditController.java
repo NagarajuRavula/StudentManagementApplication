@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.student.app.service.StudentService;
@@ -26,14 +25,14 @@ public class EditController {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/editStudentDetails", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/editStudentDetails")
 	public String editStudentDetails(@PathParam("email") String email, ModelMap model) {
 		logger.info("editStudentDetails() entered with email:"+email);
 		model.addAttribute("student", studentService.getStudentByEmail(email));
 		return "editStudentDetails";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/edit")
 	public String edit(@RequestParam("id") int id, @RequestParam("name") String name,
 			@RequestParam("email") String email, @RequestParam("originalEmail") String originalEmail,
 			@RequestParam("fatherName") String fatherName, @RequestParam("motherName") String motherName,
@@ -65,7 +64,7 @@ public class EditController {
 			}
 	}
 
-	@RequestMapping(value = "/editGoBack", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/editGoBack")
 	public String editGoBack(HttpServletRequest request, ModelMap model) {
 		logger.info("editGoBack() entered");
 		httpSession = request.getSession(false);

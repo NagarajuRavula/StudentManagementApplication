@@ -60,6 +60,20 @@ public class StudentServiceImpl implements StudentService {
 		logger.info("deleteById() entered with id:"+id);
 		return studentDao.deleteById(id);
 	}
+	@Override
+	public void saveStudent(Student student) {
+		 studentDao.saveStudent(student);
+		
+	}
+	@Override
+	public Student getStudentById(int id) {
+		return studentDao.getStudentById(id);
+	}
+	@Override
+	public void updateStudent(Student student) {
+	   studentDao.updateStudent(student);
+		
+	}
 
 	
 

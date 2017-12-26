@@ -77,6 +77,24 @@ public class StudentDaoImpl implements StudentDao {
 		return studentRepository.deleteById(id);
 	}
 
+	@Override
+	public void saveStudent(Student student) {
+		
+		studentRepository.save(student);
+	}
+
+	@Override
+	public Student getStudentById(int id) {
+	
+		return studentRepository.findOne(id);
+	}
+
+	@Override
+	public void updateStudent(Student student) {
+		studentRepository.save(student);
+		
+	}
+
 	
 
 }

@@ -16,7 +16,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.student.app.controller")).build().apiInfo(metaData());
+				.apis(RequestHandlerSelectors.basePackage("com.student.app.restcontroller")).build().apiInfo(metaData());
 	}
 
 	private ApiInfo metaData() {
