@@ -11,9 +11,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.student.app.dto.Student;
 import com.student.app.service.StudentService;
 
 @Controller
+@RequestMapping("/")
 public class SaveController {
 
 	private Logger logger = Logger.getLogger(this.getClass());
@@ -26,7 +28,7 @@ public class SaveController {
 
 	@RequestMapping(value = "/addStudent")
 	public String addStudent(ModelMap model) {
-        logger.info("addStudent() entered");
+		logger.info("addStudent() entered");
 		return "studentPersonalDetails";
 	}
 
@@ -34,15 +36,15 @@ public class SaveController {
 	public String studentPersonalDetails(@RequestParam("name") String name, @RequestParam("email") String email,
 			@RequestParam("motherName") String motherName, @RequestParam("fatherName") String fatherName,
 			@RequestParam("gender") String gender, HttpServletRequest request, ModelMap model) {
-        logger.info("studentPersonalDetails() entered");
+		logger.info("studentPersonalDetails() entered");
 		Properties properties = studentService.getProperties();
 		if (studentService.getStudentByEmail(email) != null) {
 			logger.debug("studentPersonalDetails() failed due to email is already registered");
-			model.addAttribute("errorMessage", email+" "+properties.getProperty("EXISTING_USER"));
-			model.addAttribute("sname",name);
+			model.addAttribute("errorMessage", email + " " + properties.getProperty("EXISTING_USER"));
+			model.addAttribute("sname", name);
 			model.addAttribute("semail", email);
-			model.addAttribute("sfatherName",fatherName);
-			model.addAttribute("smotherName",motherName);
+			model.addAttribute("sfatherName", fatherName);
+			model.addAttribute("smotherName", motherName);
 			return "studentPersonalDetails";
 		}
 		httpSession = request.getSession(false);
@@ -58,15 +60,24 @@ public class SaveController {
 	public String saveStudent(@RequestParam("presentclass") int presentClass, @RequestParam("marks") double marks,
 			@RequestParam("attendence") double attendence, @RequestParam("classrank") int classRank,
 			@RequestParam("password") String password, ModelMap model) {
-		if(httpSession.getAttribute("semail")==null) {
+		if (httpSession.getAttribute("semail") == null) {
 			model.addAttribute("students", studentService.getAllStudents());
 			return "adminHome";
 		}
 		logger.info("saveStudent() entered");
-		studentService.saveStudent(attendence, classRank, (String) httpSession.getAttribute("semail"),
-				(String) httpSession.getAttribute("sfatherName"), (String) httpSession.getAttribute("sgender"), marks,
-				(String) httpSession.getAttribute("smotherName"), (String) httpSession.getAttribute("sname"), password,
-				presentClass);
+		Student student = new Student();
+		student.setAttendence(attendence);
+		student.setClassrank(classRank);
+		student.setEmail((String) httpSession.getAttribute("semail"));
+		student.setFatherName((String) httpSession.getAttribute("sfatherName"));
+		student.setGender((String) httpSession.getAttribute("sgender"));
+		student.setMarks(marks);
+		student.setMothername((String) httpSession.getAttribute("smotherName"));
+		student.setName((String) httpSession.getAttribute("sname"));
+		student.setPassword(password);
+		student.setPresentClass(presentClass);
+		studentService.saveStudent(student);
+
 		httpSession.removeAttribute("sname");
 		httpSession.removeAttribute("semail");
 		httpSession.removeAttribute("smotherName");

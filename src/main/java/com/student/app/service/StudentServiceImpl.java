@@ -13,68 +13,54 @@ public class StudentServiceImpl implements StudentService {
 	StudentDao studentDao;
 	private Logger logger = Logger.getLogger(this.getClass());
 	ErrorProperties errorProperties;
+
 	public void setErrorProperties(ErrorProperties errorProperties) {
-		this.errorProperties=errorProperties;
+		this.errorProperties = errorProperties;
 	}
+
 	public void setStudentDao(StudentDao studentDao) {
 		this.studentDao = studentDao;
 	}
 
 	@Override
 	public List<Student> getAllStudents() {
-        logger.info("getAllStudents() entered");
+		logger.info("getAllStudents() entered");
 		return studentDao.getAllStudents();
 	}
 
 	@Override
 	public Student getStudentByEmail(String email) {
-		 logger.info("getStudentByEmail() entered with email:"+email);
+		logger.info("getStudentByEmail() entered with email:" + email);
 		return studentDao.getStudentByEmail(email);
 	}
 
 	@Override
-	public Student updateStudent(double attendence, int classrank, String email, String fatherName, String gender,
-			int id, double marks, String motherName, String name, String password, int presentClass) {
-		logger.info("updateStudent() entered with id:"+id);
-		return studentDao.updateStudent(attendence, classrank, email, fatherName, gender, id, marks, motherName, name,
-				password, presentClass);
-	}
-
-	
-
-	@Override
-	public void saveStudent(double attendence, int classrank, String email, String fatherName, String gender,
-			double marks, String motherName, String name, String password, int presentClass) {
-		logger.info("saveStudent() entered");
-		studentDao.saveStudent(attendence, classrank, email, fatherName, gender, marks, motherName, name, password, presentClass);
-		
-	}
-
-	@Override
 	public Properties getProperties() {
-		
+
 		return errorProperties.getProperties();
 	}
+
 	@Override
 	public int deleteById(int id) {
-		logger.info("deleteById() entered with id:"+id);
+		logger.info("deleteById() entered with id:" + id);
 		return studentDao.deleteById(id);
 	}
+
 	@Override
 	public void saveStudent(Student student) {
-		 studentDao.saveStudent(student);
-		
+		studentDao.saveStudent(student);
+
 	}
+
 	@Override
 	public Student getStudentById(int id) {
 		return studentDao.getStudentById(id);
 	}
+
 	@Override
 	public void updateStudent(Student student) {
-	   studentDao.updateStudent(student);
-		
-	}
+		studentDao.updateStudent(student);
 
-	
+	}
 
 }

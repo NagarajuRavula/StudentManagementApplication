@@ -12,9 +12,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.student.app.dto.Student;
 import com.student.app.service.StudentService;
 
 @Controller
+@RequestMapping("/")
 public class EditController {
 
 	private Logger logger = Logger.getLogger(this.getClass());
@@ -27,7 +29,7 @@ public class EditController {
 
 	@RequestMapping(value = "/editStudentDetails")
 	public String editStudentDetails(@PathParam("email") String email, ModelMap model) {
-		logger.info("editStudentDetails() entered with email:"+email);
+		logger.info("editStudentDetails() entered with email:" + email);
 		model.addAttribute("student", studentService.getStudentByEmail(email));
 		return "editStudentDetails";
 	}
@@ -50,18 +52,32 @@ public class EditController {
 				return "editStudentDetails";
 			}
 		}
-			studentService.updateStudent(attendence, classrank, email, fatherName, gender, id, marks, motherName, name,
-					password, presentClass);
-			httpSession = request.getSession(false);
-			if (httpSession.getAttribute("role").equals("admin")) {
 
-				model.addAttribute("students", studentService.getAllStudents());
-				return "adminHome";
-			} else {
-				model.addAttribute("student", studentService.getStudentByEmail(email));
-				return "studentHome";
+		Student student = new Student();
+		student.setAttendence(attendence);
+		student.setClassrank(classrank);
+		student.setEmail(email);
+		student.setFatherName(fatherName);
+		student.setGender(gender);
+		student.setId(id);
+		student.setMarks(marks);
+		student.setMarks(marks);
+		student.setMothername(motherName);
+		student.setName(name);
+		student.setPassword(password);
+		student.setPresentClass(presentClass);
+		studentService.updateStudent(student);
 
-			}
+		httpSession = request.getSession(false);
+		if (httpSession.getAttribute("role").equals("admin")) {
+
+			model.addAttribute("students", studentService.getAllStudents());
+			return "adminHome";
+		} else {
+			model.addAttribute("student", studentService.getStudentByEmail(email));
+			return "studentHome";
+
+		}
 	}
 
 	@RequestMapping(value = "/editGoBack")

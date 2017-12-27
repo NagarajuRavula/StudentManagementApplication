@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.student.app.service.StudentService;
 
 @Controller
+@RequestMapping("/")
 public class DeleteController {
 
 	private Logger logger = Logger.getLogger(this.getClass());

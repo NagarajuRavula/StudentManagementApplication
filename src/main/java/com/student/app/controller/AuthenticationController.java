@@ -16,8 +16,9 @@ import com.student.app.dto.Student;
 import com.student.app.service.StudentService;
 
 @Controller
+@RequestMapping("/")
 public class AuthenticationController {
-	
+
 	private Logger logger = Logger.getLogger(this.getClass());
 	StudentService studentService;
 	HttpSession httpSession;
@@ -25,7 +26,7 @@ public class AuthenticationController {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
-    
+
 	@RequestMapping(value = "/login")
 	public String homePage(ModelMap model) {
 		logger.info("homePage() entered");
@@ -35,11 +36,11 @@ public class AuthenticationController {
 	@RequestMapping(value = "/authenticate")
 	public String Authenticate(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, ModelMap model) {
-		logger.info("authenticate() entered with username:"+email);
+		logger.info("authenticate() entered with username:" + email);
 		Properties properties = studentService.getProperties();
 		Student user = studentService.getStudentByEmail(email);
 		if (user != null) {
-			System.out.println("name:"+user.getName()+"role:"+user.getRole());
+			System.out.println("name:" + user.getName() + "role:" + user.getRole());
 			httpSession = request.getSession();
 			if (user.getRole().equals("admin")) {
 				if (user.getPassword().equals(password)) {
@@ -49,7 +50,7 @@ public class AuthenticationController {
 					return "adminHome";
 				} else {
 					logger.debug("authenticate() failed due to invalid password");
-					model.addAttribute("errorMessage",properties.getProperty("INVALID_PASSWORD"));
+					model.addAttribute("errorMessage", properties.getProperty("INVALID_PASSWORD"));
 					return "login";
 				}
 			} else {
@@ -60,7 +61,7 @@ public class AuthenticationController {
 					return "studentHome";
 				} else {
 					logger.debug("authenticate() failed due to invalid password");
-					model.addAttribute("errorMessage",properties.getProperty("INVALID_PASSWORD"));
+					model.addAttribute("errorMessage", properties.getProperty("INVALID_PASSWORD"));
 					return "login";
 				}
 			}
@@ -68,7 +69,7 @@ public class AuthenticationController {
 
 		else {
 			logger.debug("authenticate() exited due to invalid username");
-			model.addAttribute("errorMessage",properties.getProperty("INVALID_USERNAME"));
+			model.addAttribute("errorMessage", properties.getProperty("INVALID_USERNAME"));
 			return "login";
 		}
 	}

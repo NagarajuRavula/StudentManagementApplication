@@ -1,7 +1,5 @@
 package com.student.app.restcontroller;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,22 +19,21 @@ public class SaveRestController {
 
 	private Logger logger = Logger.getLogger(this.getClass());
 	StudentService studentService;
-	HttpSession httpSession;
 
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<String> saveStudent(@RequestBody Student student, UriComponentsBuilder ucBuilder) {
 		logger.info("saveStudent() entered");
-		
+
 		Student std = studentService.getStudentByEmail(student.getEmail());
-		  if (std!=null) {
-	            logger.error("Unable to create. A User with name {} already exist");
-	            return new ResponseEntity<String>(HttpStatus.CONFLICT);
-	        }
-		
+		if (std != null) {
+			logger.error("Unable to create. A User with name {} already exist");
+			return new ResponseEntity<String>(HttpStatus.CONFLICT);
+		}
+
 		studentService.saveStudent(student);
 
 		HttpHeaders headers = new HttpHeaders();

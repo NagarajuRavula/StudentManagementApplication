@@ -23,7 +23,7 @@ public class EditRestController {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/edit/{id}",method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "/edit/{id}",method = RequestMethod.PUT, produces = "application/json",consumes = "application/json")
 	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student) {
 		logger.info("edit() entered with id:"+id);
 		Student std=studentService.getStudentById(id);

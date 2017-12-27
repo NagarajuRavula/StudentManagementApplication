@@ -1,15 +1,12 @@
 package com.student.app.restcontroller;
 
-import javax.websocket.server.PathParam;
-
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.app.service.StudentService;
@@ -25,16 +22,19 @@ public class DeleteRestController {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
-	public ResponseEntity<?> delete(@PathVariable("id") int id) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable("id") int id) {
 		logger.info("delete() entered with id:" + id);
+		  HttpHeaders httpHeaders = new HttpHeaders();
 		int status = studentService.deleteById(id);
 		if (status > 0) {
 			logger.debug("delete() successfull");
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			httpHeaders.add("success","deleted" );
+			return new ResponseEntity<String>("DELETE SUCCESSFUL",httpHeaders,HttpStatus.NO_CONTENT);
 		} else {
 			logger.debug("delete() failed");
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			httpHeaders.add("error", "id not found");
+			return new ResponseEntity<String>("ID NOT FOUND",httpHeaders,HttpStatus.NOT_FOUND);
 		}
 	}
 
