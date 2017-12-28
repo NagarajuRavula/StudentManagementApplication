@@ -1,5 +1,8 @@
 package com.student.app.restcontroller;
 
+import javax.servlet.http.Cookie;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,11 +26,15 @@ public class SaveRestController {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
-
+    
 	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<String> saveStudent(@RequestBody Student student, UriComponentsBuilder ucBuilder) {
+	public ResponseEntity<String> saveStudent(@RequestBody Student student, UriComponentsBuilder ucBuilder,HttpServletRequest request) {
 		logger.info("saveStudent() entered");
 
+		Cookie cookie[] = request.getCookies();
+		if(cookie==null) {
+			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+		}
 		Student std = studentService.getStudentByEmail(student.getEmail());
 		if (std != null) {
 			logger.error("Unable to create. A User with name {} already exist");

@@ -1,5 +1,8 @@
 package com.student.app.restcontroller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,8 +26,12 @@ public class DeleteRestController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") int id) {
+	public ResponseEntity<String> delete(@PathVariable("id") int id,HttpServletRequest request) {
 		logger.info("delete() entered with id:" + id);
+		Cookie cookie[] = request.getCookies();
+		if(cookie==null) {
+			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+		}
 		  HttpHeaders httpHeaders = new HttpHeaders();
 		int status = studentService.deleteById(id);
 		if (status > 0) {

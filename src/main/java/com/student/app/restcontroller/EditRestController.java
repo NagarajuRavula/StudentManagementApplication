@@ -1,6 +1,9 @@
 package com.student.app.restcontroller;
 
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +27,12 @@ public class EditRestController {
 	}
 
 	@RequestMapping(value = "/edit/{id}",method = RequestMethod.PUT, produces = "application/json",consumes = "application/json")
-	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student) {
+	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student,HttpServletRequest request) {
 		logger.info("edit() entered with id:"+id);
+		Cookie cookie[] = request.getCookies();
+		if(cookie==null) {
+			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+		}
 		Student std=studentService.getStudentById(id);
 		if(std==null) {
 			 logger.error("Unable to update. User with id {} not found." +id);
