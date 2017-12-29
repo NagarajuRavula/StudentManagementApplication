@@ -2,9 +2,7 @@ package com.student.app.controller;
 
 import java.util.Properties;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -36,7 +34,7 @@ public class AuthenticationController {
 	}
 
 	@RequestMapping(value = "/authenticate")
-	public String Authenticate(@RequestParam("email") String email,HttpServletResponse response, @RequestParam("password") String password,
+	public String Authenticate(@RequestParam("email") String email, @RequestParam("password") String password,
 			HttpServletRequest request, ModelMap model) {
 		logger.info("authenticate() entered with username:" + email);
 		Properties properties = studentService.getProperties();
@@ -48,7 +46,6 @@ public class AuthenticationController {
 				if (user.getPassword().equals(password)) {
 					httpSession.setAttribute("email", email);
 					httpSession.setAttribute("role", "admin");
-					response.addCookie(new Cookie("username", email));
 					model.addAttribute("students", studentService.getAllStudents());
 					return "adminHome";
 				} else {

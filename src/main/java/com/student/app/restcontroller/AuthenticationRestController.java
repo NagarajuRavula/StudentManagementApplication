@@ -30,7 +30,7 @@ public class AuthenticationRestController {
 
 	@RequestMapping(value = "/authenticate/{email}/{password}", method = RequestMethod.POST)
 	public ResponseEntity<String> Authenticate(@PathVariable("email") String email, HttpServletResponse response,
-			@PathVariable("password") String password) {
+			HttpServletRequest request,@PathVariable("password") String password) {
 		logger.info("authenticate() entered with username:" + email);
 		Properties properties = studentService.getProperties();
 		HttpHeaders httpHeaders = new HttpHeaders();
@@ -39,6 +39,15 @@ public class AuthenticationRestController {
 			System.out.println("name:" + user.getName() + "role:" + user.getRole());
 			httpHeaders.add("success", "USER EXISTS");
 			if (user.getPassword().equals(password)) {
+				Cookie cookies[] = request.getCookies();
+				if (cookies != null) {
+					for (Cookie cookie : cookies) {
+						cookie.setValue("");
+						cookie.setPath("/");
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}
+				}
 				Cookie cookie1 = new Cookie("username", email);
 				cookie1.setMaxAge(300);
 				cookie1.setPath("/");
@@ -49,6 +58,16 @@ public class AuthenticationRestController {
 				response.addCookie(cookie2);
 				return new ResponseEntity<String>("Authorized", httpHeaders, HttpStatus.OK);
 			} else {
+				Cookie cookies[] = request.getCookies();
+				if (cookies != null) {
+					for (Cookie cookie : cookies) {
+						System.out.println("invalidating the cookie........."+cookie.getName());
+						cookie.setValue("");
+						cookie.setPath("/");
+						cookie.setMaxAge(0);
+						response.addCookie(cookie);
+					}
+				}
 				return new ResponseEntity<String>(properties.getProperty("INVALID_PASSWORD"), httpHeaders,
 						HttpStatus.UNAUTHORIZED);
 			}
@@ -58,16 +77,29 @@ public class AuthenticationRestController {
 		else {
 			httpHeaders.add("error", "USER NOT EXISTS");
 			logger.debug("authenticate() exited due to invalid username");
+			Cookie cookies[] = request.getCookies();
+			if (cookies != null) {
+				for (Cookie cookie : cookies) {
+					System.out.println("invalidating the cookie........."+cookie.getName());
+					cookie.setValue("");
+					cookie.setPath("/");
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+				}
+			}
 			return new ResponseEntity<String>(properties.getProperty("INVALID_USERNAME"), httpHeaders,
 					HttpStatus.NON_AUTHORITATIVE_INFORMATION);
 		}
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ResponseEntity<String> test2(HttpServletResponse response, HttpServletRequest request) {
+	public ResponseEntity<String> logout(HttpServletResponse response, HttpServletRequest request) {
 
 		Cookie cookies[] = request.getCookies();
-		if (cookies != null) {
+		if(cookies == null) {
+			return new ResponseEntity<String>("	UN-AUTHORIZED",HttpStatus.UNAUTHORIZED);
+		}
+		else if (cookies != null) {
 			for (Cookie cookie : cookies) {
 				cookie.setValue("");
 				cookie.setPath("/");
