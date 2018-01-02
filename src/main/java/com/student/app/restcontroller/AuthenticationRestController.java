@@ -2,9 +2,9 @@ package com.student.app.restcontroller;
 
 import java.util.Properties;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
@@ -30,44 +30,21 @@ public class AuthenticationRestController {
 
 	@RequestMapping(value = "/authenticate/{email}/{password}", method = RequestMethod.POST)
 	public ResponseEntity<String> Authenticate(@PathVariable("email") String email, HttpServletResponse response,
-			HttpServletRequest request,@PathVariable("password") String password) {
+			HttpServletRequest request, @PathVariable("password") String password) {
 		logger.info("authenticate() entered with username:" + email);
 		Properties properties = studentService.getProperties();
 		HttpHeaders httpHeaders = new HttpHeaders();
 		Student user = studentService.getStudentByEmail(email);
 		if (user != null) {
 			System.out.println("name:" + user.getName() + "role:" + user.getRole());
-			httpHeaders.add("success", "USER EXISTS");
+			httpHeaders.add("message", "USER EXISTS");
 			if (user.getPassword().equals(password)) {
-				Cookie cookies[] = request.getCookies();
-				if (cookies != null) {
-					for (Cookie cookie : cookies) {
-						cookie.setValue("");
-						cookie.setPath("/");
-						cookie.setMaxAge(0);
-						response.addCookie(cookie);
-					}
-				}
-				Cookie cookie1 = new Cookie("username", email);
-				cookie1.setMaxAge(300);
-				cookie1.setPath("/");
-				response.addCookie(cookie1);
-				Cookie cookie2 = new Cookie("password", password);
-				cookie2.setMaxAge(300);
-				cookie2.setPath("/");
-				response.addCookie(cookie2);
+				httpHeaders.add("success", "Authentication success");
+				HttpSession hs = request.getSession();
+				hs.setMaxInactiveInterval(300); //5 mins interval inactive time
 				return new ResponseEntity<String>("Authorized", httpHeaders, HttpStatus.OK);
 			} else {
-				Cookie cookies[] = request.getCookies();
-				if (cookies != null) {
-					for (Cookie cookie : cookies) {
-						System.out.println("invalidating the cookie........."+cookie.getName());
-						cookie.setValue("");
-						cookie.setPath("/");
-						cookie.setMaxAge(0);
-						response.addCookie(cookie);
-					}
-				}
+				httpHeaders.add("failure", "Authentication failed");
 				return new ResponseEntity<String>(properties.getProperty("INVALID_PASSWORD"), httpHeaders,
 						HttpStatus.UNAUTHORIZED);
 			}
@@ -75,18 +52,8 @@ public class AuthenticationRestController {
 		}
 
 		else {
-			httpHeaders.add("error", "USER NOT EXISTS");
+			httpHeaders.add("message", "USER NOT EXISTS");
 			logger.debug("authenticate() exited due to invalid username");
-			Cookie cookies[] = request.getCookies();
-			if (cookies != null) {
-				for (Cookie cookie : cookies) {
-					System.out.println("invalidating the cookie........."+cookie.getName());
-					cookie.setValue("");
-					cookie.setPath("/");
-					cookie.setMaxAge(0);
-					response.addCookie(cookie);
-				}
-			}
 			return new ResponseEntity<String>(properties.getProperty("INVALID_USERNAME"), httpHeaders,
 					HttpStatus.NON_AUTHORITATIVE_INFORMATION);
 		}
@@ -94,20 +61,15 @@ public class AuthenticationRestController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ResponseEntity<String> logout(HttpServletResponse response, HttpServletRequest request) {
+		HttpSession hs = request.getSession(false);
+		if(hs!=null) {
+			System.out.println("session is not null");
+			hs.invalidate();
+			return new ResponseEntity<String>(HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<String>("	UN-AUTHORIZED", HttpStatus.UNAUTHORIZED);
+		}
 
-		Cookie cookies[] = request.getCookies();
-		if(cookies == null) {
-			return new ResponseEntity<String>("	UN-AUTHORIZED",HttpStatus.UNAUTHORIZED);
-		}
-		else if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				cookie.setValue("");
-				cookie.setPath("/");
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
-			}
-		}
-		return new ResponseEntity<String>(HttpStatus.OK);
 	}
-
 }

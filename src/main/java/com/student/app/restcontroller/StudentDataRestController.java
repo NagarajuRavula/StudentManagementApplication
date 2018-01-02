@@ -2,7 +2,6 @@ package com.student.app.restcontroller;
 
 import java.util.List;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -32,8 +31,7 @@ public class StudentDataRestController {
 	@RequestMapping(value = "/student/{id}", method = RequestMethod.GET,produces = "application/json")
 	public ResponseEntity<Student> getStudent(@PathVariable("id") int id,HttpServletRequest request) {
 		logger.info("getStudents() entered");
-		Cookie cookie[] = request.getCookies();
-		if(cookie==null) {
+		if(!request.isRequestedSessionIdValid()) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		Student student=studentService.getStudentById(id);
@@ -47,8 +45,7 @@ public class StudentDataRestController {
 	@RequestMapping(value = "/student", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Student>> listAllStudents(HttpServletRequest request){
 		logger.info("listAllStudents() entered");
-		Cookie cookie[] = request.getCookies();
-		if(cookie==null) {
+		if(!request.isRequestedSessionIdValid()) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		List<Student> students=studentService.getAllStudents();
@@ -56,6 +53,7 @@ public class StudentDataRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
+		
 	}
 
 }

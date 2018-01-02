@@ -1,6 +1,5 @@
 package com.student.app.restcontroller;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -28,8 +27,7 @@ public class DeleteRestController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("id") int id,HttpServletRequest request) {
 		logger.info("delete() entered with id:" + id);
-		Cookie cookie[] = request.getCookies();
-		if(cookie==null) {
+		if(!request.isRequestedSessionIdValid()) {
 			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
 		}
 		  HttpHeaders httpHeaders = new HttpHeaders();
@@ -37,12 +35,13 @@ public class DeleteRestController {
 		if (status > 0) {
 			logger.debug("delete() successfull");
 			httpHeaders.add("success","deleted" );
-			return new ResponseEntity<String>("DELETE SUCCESSFUL",httpHeaders,HttpStatus.NO_CONTENT);
+			return new ResponseEntity<String>("DELETE SUCCESSFUL",httpHeaders,HttpStatus.OK);
 		} else {
 			logger.debug("delete() failed");
 			httpHeaders.add("error", "id not found");
 			return new ResponseEntity<String>("ID NOT FOUND",httpHeaders,HttpStatus.NOT_FOUND);
 		}
+		
 	}
 
 }
