@@ -1,5 +1,6 @@
 package com.student.app.restcontroller;
 
+import java.util.Date;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.student.app.dto.Student;
+import com.student.app.security.TokenHandler;
 import com.student.app.service.StudentService;
 
 @RestController
@@ -35,18 +37,25 @@ public class AuthenticationRestController {
 		Properties properties = studentService.getProperties();
 		HttpHeaders httpHeaders = new HttpHeaders();
 		Student user = studentService.getStudentByEmail(email);
+		HttpSession existingSession = request.getSession(false);
+		if (existingSession != null)
+			existingSession.invalidate();
 		if (user != null) {
 			System.out.println("name:" + user.getName() + "role:" + user.getRole());
 			httpHeaders.add("message", "USER EXISTS");
 			if (user.getPassword().equals(password)) {
 				httpHeaders.add("success", "Authentication success");
-				HttpSession hs = request.getSession();
-				hs.setMaxInactiveInterval(300); //5 mins interval inactive time
-				return new ResponseEntity<String>("Authorized", httpHeaders, HttpStatus.OK);
+			//	HttpSession hs = request.getSession();
+			//	hs.setMaxInactiveInterval(300); // 5 mins interval inactive time
+				
+				TokenHandler tokenHandler = new TokenHandler();
+				
+				String token= tokenHandler.createToken(email,user.getRole());
+				return new ResponseEntity<String>(token, httpHeaders, HttpStatus.OK);
 			} else {
 				httpHeaders.add("failure", "Authentication failed");
 				return new ResponseEntity<String>(properties.getProperty("INVALID_PASSWORD"), httpHeaders,
-						HttpStatus.UNAUTHORIZED);
+						HttpStatus.FORBIDDEN);
 			}
 
 		}
@@ -55,21 +64,24 @@ public class AuthenticationRestController {
 			httpHeaders.add("message", "USER NOT EXISTS");
 			logger.debug("authenticate() exited due to invalid username");
 			return new ResponseEntity<String>(properties.getProperty("INVALID_USERNAME"), httpHeaders,
-					HttpStatus.NON_AUTHORITATIVE_INFORMATION);
+					HttpStatus.FORBIDDEN);
 		}
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ResponseEntity<String> logout(HttpServletResponse response, HttpServletRequest request) {
 		HttpSession hs = request.getSession(false);
-		if(hs!=null) {
+		if (hs != null) {
 			System.out.println("session is not null");
 			hs.invalidate();
 			return new ResponseEntity<String>(HttpStatus.OK);
-		}
-		else {
+		} else {
 			return new ResponseEntity<String>("	UN-AUTHORIZED", HttpStatus.UNAUTHORIZED);
 		}
+		
+//		long nowMillis = System.currentTimeMillis();
+//		Date now = new Date(nowMillis);
+		
 
 	}
 }

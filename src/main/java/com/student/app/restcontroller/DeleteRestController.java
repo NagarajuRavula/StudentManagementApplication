@@ -25,23 +25,23 @@ public class DeleteRestController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") int id,HttpServletRequest request) {
+	public ResponseEntity<String> delete(@PathVariable("id") int id, HttpServletRequest request) {
 		logger.info("delete() entered with id:" + id);
-		if(!request.isRequestedSessionIdValid()) {
+		if (!request.isRequestedSessionIdValid()) {
 			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
 		}
-		  HttpHeaders httpHeaders = new HttpHeaders();
+		HttpHeaders httpHeaders = new HttpHeaders();
 		int status = studentService.deleteById(id);
 		if (status > 0) {
 			logger.debug("delete() successfull");
-			httpHeaders.add("success","deleted" );
-			return new ResponseEntity<String>("DELETE SUCCESSFUL",httpHeaders,HttpStatus.OK);
+			httpHeaders.add("success", "deleted");
+			return new ResponseEntity<String>("DELETE SUCCESSFUL", httpHeaders, HttpStatus.OK);
 		} else {
 			logger.debug("delete() failed");
 			httpHeaders.add("error", "id not found");
-			return new ResponseEntity<String>("ID NOT FOUND",httpHeaders,HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("ID NOT FOUND", httpHeaders, HttpStatus.NOT_FOUND);
 		}
-		
+
 	}
 
 }

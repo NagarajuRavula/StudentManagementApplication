@@ -28,4 +28,6 @@
   </bean>
   <bean id="errorProperties" class="com.student.app.utils.ErrorProperties" autowire="byType">
   </bean>
+    <bean id="tokenHandler" class="com.student.app.security.TokenHandler" autowire="byType">
+  </bean>
 </beans>

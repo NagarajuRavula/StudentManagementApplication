@@ -1,6 +1,5 @@
 package com.student.app.restcontroller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -21,25 +20,27 @@ public class EditRestController {
 
 	private Logger logger = Logger.getLogger(this.getClass());
 	StudentService studentService;
+
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/edit/{id}",method = RequestMethod.PUT, produces = "application/json",consumes = "application/json")
-	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student,HttpServletRequest request) {
-		logger.info("edit() entered with id:"+id);
-		if(!request.isRequestedSessionIdValid()) {
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
+	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student,
+			HttpServletRequest request) {
+		logger.info("edit() entered with id:" + id);
+		if (!request.isRequestedSessionIdValid()) {
 			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
 		}
-		Student std=studentService.getStudentById(id);
-		if(std==null) {
-			 logger.error("Unable to update. User with id {} not found." +id);
-	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		Student std = studentService.getStudentById(id);
+		if (std == null) {
+			logger.error("Unable to update. User with id {} not found." + id);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		if(!std.getEmail().equals(student.getEmail())) {
-			Student temp_std=studentService.getStudentByEmail(student.getEmail());
-			if(temp_std!=null) {
-				 return new ResponseEntity<>(HttpStatus.CONFLICT);
+		if (!std.getEmail().equals(student.getEmail())) {
+			Student temp_std = studentService.getStudentByEmail(student.getEmail());
+			if (temp_std != null) {
+				return new ResponseEntity<>(HttpStatus.CONFLICT);
 			}
 		}
 		std.setAttendence(student.getAttendence());
@@ -54,8 +55,7 @@ public class EditRestController {
 		std.setPresentClass(student.getPresentClass());
 		std.setRole(student.getRole());
 		studentService.updateStudent(std);
-	        return new ResponseEntity<Student>(std, HttpStatus.OK);
+		return new ResponseEntity<Student>(std, HttpStatus.OK);
 	}
 
 }
-
