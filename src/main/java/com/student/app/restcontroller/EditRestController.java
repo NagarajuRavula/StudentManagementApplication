@@ -29,9 +29,9 @@ public class EditRestController {
 	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student,
 			HttpServletRequest request) {
 		logger.info("edit() entered with id:" + id);
-		if (!request.isRequestedSessionIdValid()) {
-			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-		}
+//		if (!request.isRequestedSessionIdValid()) {
+//			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+//		}
 		Student std = studentService.getStudentById(id);
 		if (std == null) {
 			logger.error("Unable to update. User with id {} not found." + id);

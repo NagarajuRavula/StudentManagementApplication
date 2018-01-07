@@ -6,7 +6,7 @@ import io.jsonwebtoken.Jwts;
 public class ValidateToken {
 
 	// Sample method to validate and read the JWT
-	public Claims parseJWT(String jwt) {
+	public static Claims parseJWT(String jwt) {
 
 		// This line will throw an exception if it is not a signed JWS (as expected)
 		Claims claims = null;
@@ -22,7 +22,7 @@ public class ValidateToken {
 
 		ValidateToken validate = new ValidateToken();
 		Claims claims = validate.parseJWT(
-				"eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50IjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwic3ViIjoiYWRtaW5AZ21haWwuY29tIiwiaWF0IjoxNTE0OTkzNjU0LCJleHAiOjE1MTQ5OTU0NTR9.Dg-SZbvRjp0GVqWfV4FP-pVDIgfoGbz-DMzh01OFeT4");
+				"eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Ijoic3VyYWpAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJzdWIiOiJzdXJhakBnbWFpbC5jb20iLCJpYXQiOjE1MTUwNzIxMjcsImV4cCI6MTUxNTA3MzkyN30.u-zqsUdM9FGoCrVAVxrvan3Pq4LAt30IBsuvGbiDLoY");
 		System.out.println(claims.getSubject());
 	}
 }

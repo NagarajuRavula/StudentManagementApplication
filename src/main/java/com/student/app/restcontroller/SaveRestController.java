@@ -29,9 +29,9 @@ public class SaveRestController {
 	public ResponseEntity<String> saveStudent(@RequestBody Student student, UriComponentsBuilder ucBuilder,
 			HttpServletRequest request) {
 		logger.info("saveStudent() entered");
-		if (!request.isRequestedSessionIdValid()) {
-			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-		}
+//		if (!request.isRequestedSessionIdValid()) {
+//			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+//		}
 		Student std = studentService.getStudentByEmail(student.getEmail());
 		if (std != null) {
 			logger.error("Unable to create. A User with name {} already exist");

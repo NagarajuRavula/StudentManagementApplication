@@ -3,6 +3,8 @@ package com.student.app.restcontroller;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,10 +33,10 @@ public class AuthenticationRestController {
 	}
 
 	@RequestMapping(value = "/authenticate/{email}/{password}", method = RequestMethod.POST)
-	public ResponseEntity<String> Authenticate(@PathVariable("email") String email, HttpServletResponse response,
-			HttpServletRequest request, @PathVariable("password") String password) {
+	public ResponseEntity<Object> authenticate(HttpServletRequest request,@PathVariable("email") String email, HttpServletResponse response,
+			 @PathVariable("password") String password) {
 		logger.info("authenticate() entered with username:" + email);
-		Properties properties = studentService.getProperties();
+		Properties properties = studentService.getProperties();	
 		HttpHeaders httpHeaders = new HttpHeaders();
 		Student user = studentService.getStudentByEmail(email);
 		HttpSession existingSession = request.getSession(false);
@@ -51,10 +53,15 @@ public class AuthenticationRestController {
 				TokenHandler tokenHandler = new TokenHandler();
 				
 				String token= tokenHandler.createToken(email,user.getRole());
-				return new ResponseEntity<String>(token, httpHeaders, HttpStatus.OK);
+				JsonObject jsonObject =
+				        Json.createObjectBuilder()
+				                .add("Authorization", token)
+				        .build();
+				System.out.println("generating token:"+token);
+				return new ResponseEntity<Object>(token, httpHeaders, HttpStatus.OK);
 			} else {
 				httpHeaders.add("failure", "Authentication failed");
-				return new ResponseEntity<String>(properties.getProperty("INVALID_PASSWORD"), httpHeaders,
+				return new ResponseEntity<Object>(properties.getProperty("INVALID_PASSWORD"), httpHeaders,
 						HttpStatus.FORBIDDEN);
 			}
 
@@ -63,13 +70,13 @@ public class AuthenticationRestController {
 		else {
 			httpHeaders.add("message", "USER NOT EXISTS");
 			logger.debug("authenticate() exited due to invalid username");
-			return new ResponseEntity<String>(properties.getProperty("INVALID_USERNAME"), httpHeaders,
+			return new ResponseEntity<Object>(properties.getProperty("INVALID_USERNAME"), httpHeaders,
 					HttpStatus.FORBIDDEN);
 		}
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ResponseEntity<String> logout(HttpServletResponse response, HttpServletRequest request) {
+	public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession hs = request.getSession(false);
 		if (hs != null) {
 			System.out.println("session is not null");
@@ -81,7 +88,11 @@ public class AuthenticationRestController {
 		
 //		long nowMillis = System.currentTimeMillis();
 //		Date now = new Date(nowMillis);
-		
-
 	}
+	 @RequestMapping(value="/Authenticate1",method = RequestMethod.GET)
+     
+		public String Authenticate1() {
+			
+     	return "hellio";
+		}
 }

@@ -35,9 +35,9 @@ public class StudentDataRestController {
 	@RequestMapping(value = "/student/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Student> getStudent(@PathVariable("id") int id, HttpServletRequest request) {
 		logger.info("getStudents() entered");
-		if (!request.isRequestedSessionIdValid()) {
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
+//		if (!request.isRequestedSessionIdValid()) {
+//			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//		}
 		Student student = studentService.getStudentById(id);
 		if (student == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -48,9 +48,9 @@ public class StudentDataRestController {
 	@RequestMapping(value = "/student", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Student>> listAllStudents(HttpServletRequest request) {
 		logger.info("listAllStudents() entered");
-		if (!request.isRequestedSessionIdValid()) {
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
+//		if (!request.isRequestedSessionIdValid()) {
+//			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//		}
 		List<Student> students = studentService.getAllStudents();
 		if (students.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -72,16 +72,16 @@ public class StudentDataRestController {
 //            else {
 //            	
 //            }
-              String jwt=request.getHeader("Authentication");
-              ValidateToken validateToken=new ValidateToken();
-              Claims claims=validateToken.parseJWT(jwt);
-              if(claims!=null) {
-            	  
-              }
-              else {
-            	  
-              }
-		
+//              String jwt=request.getHeader("Authentication");
+//              ValidateToken validateToken=new ValidateToken();
+//              Claims claims=validateToken.parseJWT(jwt);
+//              if(claims!=null) {
+//            	  
+//              }
+//              else {
+//            	  
+//              }
+//		
 		
 		
 		return new ResponseEntity<List<Student>>(students, HttpStatus.OK);

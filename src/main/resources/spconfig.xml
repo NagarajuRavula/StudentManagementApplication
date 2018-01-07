@@ -1,7 +1,11 @@
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
-"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
  
-<beans>
   <bean id="studentService" class="com.student.app.service.StudentServiceImpl" autowire="byType">
   </bean>
   <bean id="authenticationController" class="com.student.app.controller.AuthenticationController" autowire="byType">
@@ -21,7 +25,7 @@
     <bean id="studentDataRestController" class="com.student.app.restcontroller.StudentDataRestController" autowire="byType">
   </bean>
   
-   <bean id="authenticationRestController" class="com.student.app.restcontroller.AuthenticationRestController" autowire="byType">
+   <bean id="authenticationRestController" class="com.student.app.restcontroller.AuthenticationRestController"  autowire="byType">
   </bean>
   
   <bean id="studentDaoImpl" class="com.student.app.dao.StudentDaoImpl" autowire="byType">
@@ -30,4 +34,41 @@
   </bean>
     <bean id="tokenHandler" class="com.student.app.security.TokenHandler" autowire="byType">
   </bean>
+    <bean id="validateToken1" class="com.student.app.security.ValidateToken1" autowire="byType">
+  </bean>
+  
+  
+  <aop:aspectj-autoproxy />
+
+  
+  <bean id="authenticationServiceProxy"
+                 class="org.springframework.aop.framework.ProxyFactoryBean">
+
+
+		<property name="target">
+		  <list>
+		    <value>deleteRestController</value>
+		    <value>editRestController</value>
+		    <value>saveRestController</value>
+		    <value>studentDataRestController</value>
+		  </list>
+		</property>
+
+<!--  <property name="target" ref="studentDataRestController"/> -->
+
+		<property name="interceptorNames">
+			<list>
+				<value>validateToken1</value>
+			</list>
+		</property>
+	</bean>
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </beans>
