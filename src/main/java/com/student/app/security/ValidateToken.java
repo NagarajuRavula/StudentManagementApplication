@@ -17,12 +17,4 @@ public class ValidateToken {
 		}
 		return claims;
 	}
-
-	public static void main(String args[]) {
-
-		ValidateToken validate = new ValidateToken();
-		Claims claims = validate.parseJWT(
-				"eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50Ijoic3VyYWpAZ21haWwuY29tIiwicm9sZSI6InN0dWRlbnQiLCJzdWIiOiJzdXJhakBnbWFpbC5jb20iLCJpYXQiOjE1MTUwNzIxMjcsImV4cCI6MTUxNTA3MzkyN30.u-zqsUdM9FGoCrVAVxrvan3Pq4LAt30IBsuvGbiDLoY");
-		System.out.println(claims.getSubject());
-	}
 }

@@ -27,9 +27,6 @@ public class DeleteRestController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("id") int id, HttpServletRequest request) {
 		logger.info("delete() entered with id:" + id);
-//		if (!request.isRequestedSessionIdValid()) {
-//			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-//		}
 		HttpHeaders httpHeaders = new HttpHeaders();
 		int status = studentService.deleteById(id);
 		if (status > 0) {

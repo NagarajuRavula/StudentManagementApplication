@@ -34,8 +34,7 @@
   </bean>
     <bean id="tokenHandler" class="com.student.app.security.TokenHandler" autowire="byType">
   </bean>
-    <bean id="validateToken1" class="com.student.app.security.ValidateToken1" autowire="byType">
-  </bean>
+  
   
   
   <aop:aspectj-autoproxy />
