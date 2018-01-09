@@ -71,7 +71,7 @@ public class EditController {
 		httpSession = request.getSession(false);
 		if (httpSession.getAttribute("role").equals("admin")) {
 
-			model.addAttribute("students", studentService.getAllStudents());
+			model.addAttribute("admin", studentService.getStudentByEmail((String)httpSession.getAttribute("email")));
 			return "adminHome";
 		} else {
 			model.addAttribute("student", studentService.getStudentByEmail(email));

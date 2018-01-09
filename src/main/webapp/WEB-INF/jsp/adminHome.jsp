@@ -7,8 +7,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Admin Home</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href=${pageContext.request.contextPath}/css/adminHomePage.css>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href=${pageContext.request.contextPath}/css/adminHomePage.css>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<script src=${pageContext.request.contextPath}/js/adminHome.js></script>
@@ -17,11 +21,18 @@
 	<center>
 		<div class="header">
 			<h2>Student Management Application</h2>
-
 		</div>
-		<a id="logout" href=${pageContext.request.contextPath}/logout> Log out<i class="fa fa-sign-out"></i></a>
-		<h1>Welcome Admin</h1>
-		<a href=${pageContext.request.contextPath}/addStudent>Add Student+</a><br> <br>
+
+		<p id="logedInName">
+			Logged in As: <b id="email">${admin.getEmail()}</b>
+		</p>
+		<a id="logout" href=${pageContext.request.contextPath}/logout>
+			Log out<i class="fa fa-sign-out"></i>
+		</a>
+		<h2>welcome ${admin.getName()}</h2>
+
+		<a href=${pageContext.request.contextPath}/addStudent>Add Student+</a><br>
+		<br>
 		<h3>Students List</h3>
 	</center>
 
@@ -30,33 +41,78 @@
 		<p id="deleteMessage">
 	</div>
 
-	<div class="tableDiv">
-		<table border='1' width='100%'>
-			<tr>
+
+
+
+
+
+
+
+
+	<div class="tableDiv" id="tableDiv">
+		<table border='1' width='100%' id="table1">
+			<tr id="row1">
 				<th>Id</th>
 				<th>Name</th>
 				<th>Father Name</th>
 				<th>Email</th>
 				<th>Gender</th>
-				<th>Father</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
-
-			<c:forEach items="${students}" var="student">
-				<tr>
-					<td>${student.getId()}</td>
-					<td>${student.getName()}</td>
-					<td>${student.getFatherName()}</td>
-					<td>${student.getEmail()}</td>
-					<td>${student.getGender()}</td>
-					<td>${student.getFatherName()}</td>
-					<td><a href=${pageContext.request.contextPath}/editStudentDetails?email=${student.getEmail()}>View/Edit</a></td>
-					<td><a href=${pageContext.request.contextPath}/delete?id=${student.getId()} >delete</a></td>
-				</tr>
-			</c:forEach>
 		</table>
-	</div> 
+	</div>
+
+
+
+
+
+
+
+
+	<!-- 	<div class="tableDiv" id="tableDiv"> -->
+	<!-- 		<table border='1' width='100%'> -->
+	<!-- 			<tr id="row"> -->
+	<!-- 				<th>Id</th> -->
+	<!-- 				<th>Name</th> -->
+	<!-- 				<th>Father Name</th> -->
+	<!-- 				<th>Email</th> -->
+	<!-- 				<th>Gender</th> -->
+	<!-- 				<th>Father</th> -->
+	<!-- 				<th>Edit</th> -->
+	<!-- 				<th>Delete</th> -->
+	<!-- 			</tr> -->
+
+	<%-- 			<c:forEach items="${students}" var="student"> --%>
+	<!-- 				<tr id="row"> -->
+	<%-- 					<td>${student.getId()}</td> --%>
+	<%-- 					<td>${student.getName()}</td> --%>
+	<%-- 					<td>${student.getFatherName()}</td> --%>
+	<%-- 					<td>${student.getEmail()}</td> --%>
+	<%-- 					<td>${student.getGender()}</td> --%>
+	<%-- 					<td>${student.getFatherName()}</td> --%>
+	<!-- 					<td><a -->
+	<!-- 						href=${pageContext.request.contextPath}/editStudentDetails?email=${student.getEmail()}>View/Edit</a></td> -->
+	<!-- 					<td><a -->
+	<!-- 						href=${pageContext.request.contextPath}/delete/${student.getId()} -->
+	<!-- 						onclick="deleteStudent1(this)">delete</a></td> -->
+	<!-- 				</tr> -->
+	<%-- 			</c:forEach> --%>
+	<!-- 		</table> -->
+	<!-- 	</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

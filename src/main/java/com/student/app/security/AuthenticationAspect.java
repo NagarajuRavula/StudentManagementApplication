@@ -25,27 +25,22 @@ public class AuthenticationAspect {
 	public ResponseEntity<Object> authBefore(ProceedingJoinPoint jp) throws Throwable {
 
 		JsonObject jsonObject;
-		// System.out.println("method name : " + jp.getSignature().getName());
-		// System.out.println("method parameters : " + jp.getArgs().length);
-		// System.out.println(jp.getArgs()[0].getClass() == RequestFacade.class);
-		// System.out.println("argumets: " + jp.getArgs());
 		HttpServletRequest request = null;
+		ResponseEntity<Object> response = null;
+		HttpHeaders httpHeaders = new HttpHeaders();
 		for (int i = 0; i < jp.getArgs().length; i++) {
 			if (jp.getArgs()[i].getClass() == RequestFacade.class) {
 				request = (HttpServletRequest) jp.getArgs()[i];
 				break;
 			}
 		}
-		// System.out.println("header:" + request.getHeader("Authorization"));
-		HttpHeaders httpHeaders = new HttpHeaders();
 		String jwt = request.getHeader("Authorization");
 		Claims claims = ValidateToken.parseJWT(jwt);
 
 		if (jp.getSignature().getName().equals("authenticate")) {
 			Object obj = jp.proceed();
-			// System.out.println(obj.getClass().getDeclaredFields());
-			// System.out.println(obj.getClass().getFields().toString());
-			return new ResponseEntity<Object>(obj, HttpStatus.OK);
+			response = (ResponseEntity<Object>) obj;
+			return response;
 
 		}
 
@@ -57,19 +52,21 @@ public class AuthenticationAspect {
 				long nowMillis = System.currentTimeMillis();
 				Date now = new Date(nowMillis);
 				claims.setExpiration(now);
+
 				return new ResponseEntity<Object>(HttpStatus.OK);
 			}
 		}
 
 		else if (jp.getSignature().getName().equals("delete")) {
-
+            System.out.println("request for delete:   ------------");
 			if (claims == null) {
 				return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
 			} else {
 				String role = (String) claims.get("role");
 				if (role.equals("admin")) {
 					Object obj = jp.proceed();
-					return new ResponseEntity<Object>(obj, HttpStatus.OK);
+					response = (ResponseEntity<Object>) obj;
+					return response;
 				} else
 					return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
 			}
@@ -91,7 +88,8 @@ public class AuthenticationAspect {
 					return new ResponseEntity<Object>(jsonObject, httpHeaders, HttpStatus.UNAUTHORIZED);
 				} else {
 					Object obj = jp.proceed();
-					return new ResponseEntity<Object>(obj, HttpStatus.OK);
+					response = (ResponseEntity<Object>) obj;
+					return response;
 				}
 			}
 		}

@@ -46,7 +46,7 @@ public class AuthenticationController {
 				if (user.getPassword().equals(password)) {
 					httpSession.setAttribute("email", email);
 					httpSession.setAttribute("role", "admin");
-					model.addAttribute("students", studentService.getAllStudents());
+					model.addAttribute("admin", studentService.getStudentByEmail(email));
 					return "adminHome";
 				} else {
 					logger.debug("authenticate() failed due to invalid password");

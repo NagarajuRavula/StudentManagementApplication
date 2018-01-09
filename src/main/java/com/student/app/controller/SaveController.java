@@ -1,5 +1,7 @@
 package com.student.app.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,7 +85,7 @@ public class SaveController {
 		httpSession.removeAttribute("smotherName");
 		httpSession.removeAttribute("sfatherName");
 		httpSession.removeAttribute("sgender");
-		model.addAttribute("students", studentService.getAllStudents());
+		model.addAttribute("admin", studentService.getStudentByEmail((String)httpSession.getAttribute("email")));
 		return "adminHome";
 	}
 }

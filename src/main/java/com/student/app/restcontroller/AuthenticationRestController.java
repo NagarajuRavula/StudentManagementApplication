@@ -1,5 +1,6 @@
 package com.student.app.restcontroller;
 
+import java.util.Date;
 import java.util.Properties;
 
 import javax.json.Json;
@@ -46,10 +47,12 @@ public class AuthenticationRestController {
 			httpHeaders.add("message", "USER EXISTS");
 			if (user.getPassword().equals(password)) {
 				httpHeaders.add("success", "Authentication success");
-
-				String token = TokenHandler.createToken(email, user.getRole());
+				long nowMillis = System.currentTimeMillis();
+				Date now = new Date(nowMillis);
+				//System.out.println("Token Id: "+user.getId()+""+now.getTime());
+                String tokenId = user.getId()+""+now.getTime();
+				String token = TokenHandler.createToken(email, user.getRole(),tokenId);
 				JsonObject jsonObject = Json.createObjectBuilder().add("Authorization", token).build();
-				System.out.println("generating token:" + token);
 				return new ResponseEntity<Object>(jsonObject, httpHeaders, HttpStatus.OK);
 			} else {
 				httpHeaders.add("failure", "Authentication failed");

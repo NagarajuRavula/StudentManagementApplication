@@ -14,6 +14,10 @@
   </bean>
   <bean id="deleteController" class="com.student.app.controller.DeleteController" autowire="byType">
   </bean>
+    <bean id="deleteControllerAjax" class="com.student.app.controller.DeleteControllerAjax" autowire="byType">
+  </bean>
+    <bean id="studentDataController" class="com.student.app.controller.StudentDataController" autowire="byType">
+  </bean>
    <bean id="saveController" class="com.student.app.controller.SaveController" autowire="byType">
   </bean>
    <bean id="deleteRestController" class="com.student.app.restcontroller.DeleteRestController" autowire="byType">
