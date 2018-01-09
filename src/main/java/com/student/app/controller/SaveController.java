@@ -1,6 +1,5 @@
 package com.student.app.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.Properties;
 
