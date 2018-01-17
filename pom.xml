@@ -32,8 +32,6 @@
     <scope>compile</scope>
 </dependency>
 
-
-
 <!-- https://mvnrepository.com/artifact/cglib/cglib -->
 <dependency>
     <groupId>cglib</groupId>

@@ -1,4 +1,3 @@
-
 function checkPassword() {
 	var password = document.getElementById("password").value
 	var passwordLength = password.length;
@@ -7,8 +6,7 @@ function checkPassword() {
 		alert("Please enter correct password");
 		return false;
 
-	}
-	else
+	} else
 		return true;
 
 }

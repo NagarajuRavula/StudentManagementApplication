@@ -1,11 +1,13 @@
 package com.student.app.restcontroller;
 
+
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +28,7 @@ public class SaveRestController {
 	}
 
 	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<String> saveStudent(@RequestBody Student student, UriComponentsBuilder ucBuilder,
+	public ResponseEntity<String> saveStudent(@RequestBody Student student, UriComponentsBuilder ucBuilder,@RequestHeader(value="Authorization") String authorization,
 			HttpServletRequest request) {
 		logger.info("saveStudent() entered");
 		Student std = studentService.getStudentByEmail(student.getEmail());

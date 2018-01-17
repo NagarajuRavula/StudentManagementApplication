@@ -4,6 +4,7 @@ package com.student.app.controller;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -28,7 +29,7 @@ public class SaveController {
 	}
 
 	@RequestMapping(value = "/addStudent")
-	public String addStudent(ModelMap model) {
+	public String addStudent(ModelMap model,HttpServletRequest request,HttpServletResponse response) {
 		logger.info("addStudent() entered");
 		return "studentPersonalDetails";
 	}
@@ -36,7 +37,7 @@ public class SaveController {
 	@RequestMapping(value = "/studentPersonalDetails")
 	public String studentPersonalDetails(@RequestParam("name") String name, @RequestParam("email") String email,
 			@RequestParam("motherName") String motherName, @RequestParam("fatherName") String fatherName,
-			@RequestParam("gender") String gender, HttpServletRequest request, ModelMap model) {
+			@RequestParam("gender") String gender, HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		logger.info("studentPersonalDetails() entered");
 		Properties properties = studentService.getProperties();
 		if (studentService.getStudentByEmail(email) != null) {
@@ -60,7 +61,7 @@ public class SaveController {
 	@RequestMapping(value = "/saveStudent")
 	public String saveStudent(@RequestParam("presentclass") int presentClass, @RequestParam("marks") double marks,
 			@RequestParam("attendence") double attendence, @RequestParam("classrank") int classRank,
-			@RequestParam("password") String password, ModelMap model) {
+			@RequestParam("password") String password, ModelMap model,HttpServletRequest request,HttpServletResponse response) {
 		if (httpSession.getAttribute("semail") == null) {
 			model.addAttribute("students", studentService.getAllStudents());
 			return "adminHome";

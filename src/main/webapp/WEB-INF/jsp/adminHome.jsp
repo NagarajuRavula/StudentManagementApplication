@@ -26,8 +26,8 @@
 		<p id="logedInName">
 			Logged in As: <b id="email">${admin.getEmail()}</b>
 		</p>
-		<a id="logout" href=${pageContext.request.contextPath}/logout>
-			Log out<i class="fa fa-sign-out"></i>
+		<a id="logout" href=${pageContext.request.contextPath}/logout> Log
+			out<i class="fa fa-sign-out"></i>
 		</a>
 		<h2>welcome ${admin.getName()}</h2>
 
@@ -35,19 +35,6 @@
 		<br>
 		<h3>Students List</h3>
 	</center>
-
-	<div>
-
-		<p id="deleteMessage">
-	</div>
-
-
-
-
-
-
-
-
 
 	<div class="tableDiv" id="tableDiv">
 		<table border='1' width='100%' id="table1">
@@ -63,84 +50,6 @@
 		</table>
 	</div>
 
-
-
-
-
-
-
-
-	<!-- 	<div class="tableDiv" id="tableDiv"> -->
-	<!-- 		<table border='1' width='100%'> -->
-	<!-- 			<tr id="row"> -->
-	<!-- 				<th>Id</th> -->
-	<!-- 				<th>Name</th> -->
-	<!-- 				<th>Father Name</th> -->
-	<!-- 				<th>Email</th> -->
-	<!-- 				<th>Gender</th> -->
-	<!-- 				<th>Father</th> -->
-	<!-- 				<th>Edit</th> -->
-	<!-- 				<th>Delete</th> -->
-	<!-- 			</tr> -->
-
-	<%-- 			<c:forEach items="${students}" var="student"> --%>
-	<!-- 				<tr id="row"> -->
-	<%-- 					<td>${student.getId()}</td> --%>
-	<%-- 					<td>${student.getName()}</td> --%>
-	<%-- 					<td>${student.getFatherName()}</td> --%>
-	<%-- 					<td>${student.getEmail()}</td> --%>
-	<%-- 					<td>${student.getGender()}</td> --%>
-	<%-- 					<td>${student.getFatherName()}</td> --%>
-	<!-- 					<td><a -->
-	<!-- 						href=${pageContext.request.contextPath}/editStudentDetails?email=${student.getEmail()}>View/Edit</a></td> -->
-	<!-- 					<td><a -->
-	<!-- 						href=${pageContext.request.contextPath}/delete/${student.getId()} -->
-	<!-- 						onclick="deleteStudent1(this)">delete</a></td> -->
-	<!-- 				</tr> -->
-	<%-- 			</c:forEach> --%>
-	<!-- 		</table> -->
-	<!-- 	</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<c:if test="${not empty errorMessage}">
-		<div class="alert">
-			<span class="closebtn">&times;</span> ${errorMessage}
-		</div>
-	</c:if>
-
-
-
-
-	<script type="text/javascript">
-		var close = document.getElementsByClassName("closebtn");
-		var i;
-		console.log(close);
-		console.log(close.length);
-		for (i = 0; i < close.length; i++) {
-			close[i].onclick = function() {
-				var div = this.parentElement;
-				console.log(div);
-				div.style.opacity = "0";
-				setTimeout(function() {
-					div.style.display = "none";
-				}, 600);
-			}
-		}
-	</script>
 
 </body>
 </html>

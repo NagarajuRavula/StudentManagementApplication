@@ -1,6 +1,7 @@
 package com.student.app.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
@@ -23,12 +24,12 @@ public class DeleteControllerAjax {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<String> delete(@PathVariable("id") int id, HttpServletRequest request) {
+	public ResponseEntity<String> delete(@PathVariable("id") int id, HttpServletRequest request,HttpServletResponse response) {
 		logger.info("delete() entered with id:" + id);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		int status = studentService.deleteById(id);
 		if (status > 0) {
-			logger.debug("delete() successfull");
+			logger.debug("delete() successfull ----;;;;''''");
 			httpHeaders.add("success", "deleted");
 			return new ResponseEntity<String>("DELETE SUCCESSFUL", httpHeaders, HttpStatus.OK);
 		} else {

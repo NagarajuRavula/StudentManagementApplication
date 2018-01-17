@@ -3,6 +3,7 @@ package com.student.app.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class StudentDataController {
 		this.studentService = studentService;
 	}
 	@RequestMapping(value = "/student", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<Student>> listAllStudents(HttpServletRequest request) {
+	public ResponseEntity<List<Student>> listAllStudents(HttpServletRequest request,HttpServletResponse response) {
 		logger.info("listAllStudents() entered");
 		List<Student> students = studentService.getAllStudents();
 		if (students.isEmpty()) {

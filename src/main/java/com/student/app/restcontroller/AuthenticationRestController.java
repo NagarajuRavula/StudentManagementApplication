@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,9 +50,9 @@ public class AuthenticationRestController {
 				httpHeaders.add("success", "Authentication success");
 				long nowMillis = System.currentTimeMillis();
 				Date now = new Date(nowMillis);
-				//System.out.println("Token Id: "+user.getId()+""+now.getTime());
-                String tokenId = user.getId()+""+now.getTime();
-				String token = TokenHandler.createToken(email, user.getRole(),tokenId);
+				// System.out.println("Token Id: "+user.getId()+""+now.getTime());
+				String tokenId = user.getId() + "" + now.getTime();
+				String token = TokenHandler.createToken(email, user.getRole(), tokenId);
 				JsonObject jsonObject = Json.createObjectBuilder().add("Authorization", token).build();
 				return new ResponseEntity<Object>(jsonObject, httpHeaders, HttpStatus.OK);
 			} else {
@@ -71,7 +72,7 @@ public class AuthenticationRestController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response,@RequestHeader(value="Authorization") String authorization) {
 		HttpSession hs = request.getSession(false);
 		if (hs != null) {
 			System.out.println("session is not null");

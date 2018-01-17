@@ -3,6 +3,7 @@ package com.student.app.controller;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
@@ -28,7 +29,7 @@ public class EditController {
 	}
 
 	@RequestMapping(value = "/editStudentDetails")
-	public String editStudentDetails(@PathParam("email") String email, ModelMap model) {
+	public String editStudentDetails(@PathParam("email") String email, ModelMap model,HttpServletRequest request,HttpServletResponse response) {
 		logger.info("editStudentDetails() entered with email:" + email);
 		model.addAttribute("student", studentService.getStudentByEmail(email));
 		return "editStudentDetails";
@@ -41,7 +42,7 @@ public class EditController {
 			@RequestParam("gender") String gender, @RequestParam("presentClass") int presentClass,
 			@RequestParam("marks") double marks, @RequestParam("attendence") double attendence,
 			@RequestParam("classrank") int classrank, @RequestParam("password") String password,
-			HttpServletRequest request, ModelMap model) {
+			HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		logger.info("edit() entered");
 		Properties properties = studentService.getProperties();
 		if (!email.equals(originalEmail)) {
@@ -81,7 +82,7 @@ public class EditController {
 	}
 
 	@RequestMapping(value = "/editGoBack")
-	public String editGoBack(HttpServletRequest request, ModelMap model) {
+	public String editGoBack(HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		logger.info("editGoBack() entered");
 		httpSession = request.getSession(false);
 		if (httpSession.getAttribute("role").equals("admin")) {

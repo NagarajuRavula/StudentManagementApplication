@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class EditRestController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student,
+	public ResponseEntity<?> edit(@PathVariable("id") int id, @RequestBody Student student,@RequestHeader(value="Authorization") String authorization,
 			HttpServletRequest request) {
 		logger.info("edit() entered with id:" + id);
 		Student std = studentService.getStudentById(id);
