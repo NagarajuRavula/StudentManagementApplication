@@ -10,8 +10,9 @@ jobs:
       - checkout
       - run: mkdir logs 
       - run: mvn clean install -DskipTests
-      #- run: |
-       #   sudo docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - setup_remote_docker
+      - run: |
+          sudo docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t studnet/app:$CIRCLE_BRANCH .
 
 
