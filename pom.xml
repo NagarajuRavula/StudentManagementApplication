@@ -6,7 +6,7 @@
 	<groupId>com.student.app</groupId>
 	<artifactId>StudentManagementApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>StudentManagementApplication</name>
 	<description>working with spring jps</description>

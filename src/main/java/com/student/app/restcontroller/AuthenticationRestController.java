@@ -33,6 +33,9 @@ public class AuthenticationRestController {
 		this.studentService = studentService;
 	}
 
+	
+	
+	
 	@RequestMapping(value = "/authenticate/{email}/{password}", method = RequestMethod.POST)
 	public ResponseEntity<Object> authenticate(HttpServletRequest request, @PathVariable("email") String email,
 			HttpServletResponse response, @PathVariable("password") String password) {

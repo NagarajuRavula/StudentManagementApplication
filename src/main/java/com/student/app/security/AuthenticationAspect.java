@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -155,7 +154,6 @@ public class AuthenticationAspect {
 			}
 			Cookie cookies[] = request.getCookies();
 			if (cookies == null) {
-				System.out.println(request.getContextPath() + "/login");
 				response.sendRedirect(request.getContextPath() + "/login");
 				return null;
 			}

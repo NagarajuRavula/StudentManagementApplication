@@ -46,10 +46,10 @@ public class StudentDaoImpl implements StudentDao {
 		return studentRepository.findOne(id);
 	}
 
+	
 	@Override
 	public void updateStudent(Student student) {
 		studentRepository.save(student);
-
 	}
 
 }

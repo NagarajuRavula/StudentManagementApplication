@@ -1,10 +1,6 @@
 window.onload = function() {
 
 	buildtable();
-//	var jwt = getCookie("jwt");
-//	if (jwt != "") {
-//		alert("Welcome again " + jwt);
-//	}
 }
 
 function deleteStudent1() {
@@ -12,7 +8,7 @@ function deleteStudent1() {
 		url : this.name,
 		type : 'DELETE',
 		success : function(result, status) {
-			alert("record deleted successfully!");
+			alert("record deleted successfully");
 			$("tr#row1:not(:first)").remove();
 			buildtable();
 		},
@@ -25,7 +21,7 @@ function deleteStudent1() {
 
 function buildtable() {
 	$.ajax({
-		url : 'http://localhost:8081/student/student',
+		url : contextPath+'/student';
 		type : 'GET',
 		success : function(result, status) {
 			var mixed = document.getElementById("table1");

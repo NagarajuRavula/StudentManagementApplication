@@ -9,6 +9,7 @@ import com.student.app.dao.StudentDao;
 import com.student.app.dto.Student;
 import com.student.app.utils.ErrorProperties;
 
+
 public class StudentServiceImpl implements StudentService {
 	StudentDao studentDao;
 	private Logger logger = Logger.getLogger(this.getClass());
@@ -43,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public int deleteById(int id) {
 		logger.info("deleteById() entered with id:" + id);
-		return studentDao.deleteById(id);
+		throw new RuntimeException("hrfghfb");
 	}
 
 	@Override
@@ -57,6 +58,7 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.getStudentById(id);
 	}
 
+	
 	@Override
 	public void updateStudent(Student student) {
 		studentDao.updateStudent(student);

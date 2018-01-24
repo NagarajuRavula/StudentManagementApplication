@@ -15,7 +15,13 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-	<script src=${pageContext.request.contextPath}/js/adminHome.js></script>
+	<script src=${pageContext.request.contextPath}/js/adminHome.js>
+	</script>
+	
+<!-- this script is used to initialize the context path	 -->
+<script type="text/javascript">
+var contextPath='<%=request.getContextPath()%>';
+</script>
 
 
 	<center>
@@ -49,7 +55,5 @@
 			</tr>
 		</table>
 	</div>
-
-
 </body>
 </html>
