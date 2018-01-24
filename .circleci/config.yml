@@ -11,7 +11,7 @@ jobs:
       - run: mkdir logs 
       - run: mvn clean install -DskipTests
       - run: |
-          docker login -u $DOCKER_USER --password-stdin $DOCKER_PASS
+          sudo docker login -u nagarajuravula -p Nagaraju@1
       - run: docker build -t studnet/app:$CIRCLE_BRANCH .
 
 
