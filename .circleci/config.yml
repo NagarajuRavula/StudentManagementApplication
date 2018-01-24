@@ -7,8 +7,7 @@ jobs:
       - image: circleci/mysql:5.7
     working_directory: ~/repo
     steps:
-      - checkout:
-          path: $CIRCLE_PROJECT_REPONAME
+      - checkout
       - run: mkdir logs 
       - run: mvn clean install -DskipTests
       - run: |
