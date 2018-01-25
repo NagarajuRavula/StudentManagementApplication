@@ -15,7 +15,18 @@ jobs:
      machine:
         image: circleci/classic:edge
      steps:
-       - run: sudo docker tag $CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM 
+       - run: sudo docker tag $PROJECT_NAME/$CIRCLE_BUILD_NUM $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM 
+
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy-approval:
+         type: approval
+         requires:
+           - build   
 
 
 
