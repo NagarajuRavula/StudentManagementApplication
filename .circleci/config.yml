@@ -9,7 +9,13 @@ jobs:
       - run: mkdir logs 
       - run: mvn clean install -DskipTests
       - run: sudo docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: sudo docker build -t studnet/app:$CIRCLE_BRANCH .
+      - run: sudo docker build -t $CIRCLE_BRANCH .
+  deploy: 
+     working_directory: ~/repo
+     machine:
+        image: circleci/classic:edge
+     steps:
+       - run: sudo docker tag friendlyhello nagarajuravula/get-started:part2 
 
 
 
