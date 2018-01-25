@@ -13,7 +13,7 @@ jobs:
   deploy: 
      working_directory: ~/repo
      machine:
-        image: circleci/classic:edge
+        image: build
      steps:
        - run: sudo docker tag testapp $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM 
        - run: sudo docker push $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM
