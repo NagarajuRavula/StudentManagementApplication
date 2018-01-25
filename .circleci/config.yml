@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: mkdir logs 
-     # - run: mvn clean install -DskipTests
+      - run: mvn clean install -DskipTests
      # - setup_remote_docker
      # - run:
      #     name: Install Docker client
