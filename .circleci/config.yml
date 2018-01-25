@@ -1,10 +1,8 @@
-
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/openjdk:8-jdk
-      - image: circleci/mysql:5.7
+    machine:
+        image: circleci/classic:edge
     working_directory: ~/repo
     steps:
       - checkout
