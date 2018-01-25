@@ -30,8 +30,8 @@ workflows:
          type: approval
          requires:
            - build   
-      - deploy:
-	 requires:
-	   - deploy-approval
+      - deploy:    
+         requires:
+           - deploy-approval
 
 
