@@ -10,6 +10,8 @@ jobs:
       - run: mvn clean install -DskipTests
       - run: sudo docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: sudo docker build -t $PROJECT_NAME/$CIRCLE_BUILD_NUM .
+      - run: sudo docker tag $PROJECT_NAME/$CIRCLE_BUILD_NUM $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM 
+      - run: sudo docker push $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM
   deploy: 
      working_directory: ~/repo
      machine:
