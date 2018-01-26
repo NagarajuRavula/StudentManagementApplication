@@ -21,7 +21,7 @@ function deleteStudent1() {
 
 function buildtable() {
 	$.ajax({
-		url : contextPath+'/student';
+		url : contextPath+'/student',
 		type : 'GET',
 		success : function(result, status) {
 			var mixed = document.getElementById("table1");
