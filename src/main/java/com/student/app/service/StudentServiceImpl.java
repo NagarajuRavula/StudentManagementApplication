@@ -44,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public int deleteById(int id) {
 		logger.info("deleteById() entered with id:" + id);
-		throw new RuntimeException("hrfghfb");
+		return studentDao.deleteById(id);
 	}
 
 	@Override

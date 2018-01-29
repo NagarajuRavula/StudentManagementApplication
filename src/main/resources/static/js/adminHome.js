@@ -19,6 +19,7 @@ function deleteStudent1() {
 	// this.href = '#';
 }
 
+
 function buildtable() {
 	$.ajax({
 		url : contextPath+'/student',
