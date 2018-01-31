@@ -50,6 +50,5 @@ public class StudentDaoImpl implements StudentDao {
 	@Override
 	public void updateStudent(Student student) {
 		studentRepository.save(student);
-	}
-
+	}	
 }

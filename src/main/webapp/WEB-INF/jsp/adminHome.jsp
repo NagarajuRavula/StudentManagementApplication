@@ -17,11 +17,11 @@
 <body>
 	<script src=${pageContext.request.contextPath}/js/adminHome.js>
 	</script>
-	
-<!-- this script is used to initialize the context path	 -->
-<script type="text/javascript">
+
+	<!-- this script is used to initialize the context path	 -->
+	<script type="text/javascript">
 var contextPath='<%=request.getContextPath()%>';
-</script>
+	</script>
 
 
 	<center>
@@ -44,7 +44,7 @@ var contextPath='<%=request.getContextPath()%>';
 
 	<div class="tableDiv" id="tableDiv">
 		<table border='1' width='100%' id="table1">
-			<tr id="row1">
+			<tr id="row">
 				<th>Id</th>
 				<th>Name</th>
 				<th>Father Name</th>

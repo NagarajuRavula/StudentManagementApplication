@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Login Page</title>
-<link rel="stylesheet" href=${pageContext.request.contextPath}/css/loginPage.css>
+<link rel="stylesheet"
+	href=${pageContext.request.contextPath}/css/loginPage.css>
 </head>
 <body>
 	<script src=${pageContext.request.contextPath}/js/loginValidations.js></script>
@@ -17,8 +18,8 @@
 			<h3>please Login to continue....</h3>
 		</div>
 		<c:if test="${not empty errorMessage}">
-              <p> Error: ${errorMessage}</p>
-        </c:if>
+			<p>Error: ${errorMessage}</p>
+		</c:if>
 
 	</center>
 
@@ -28,10 +29,12 @@
 		<div class="form">
 			<form class="login-form"
 				action=${pageContext.request.contextPath}/authenticate method="post"
-				onsubmit="return checkPassword()">
+				onsubmit="return validateLoginForm()">
 				<input type="email" placeholder="email" name="email" id="name"
 					required /> <input type="password" placeholder="password"
-					name="password" id="password" required />
+					name="password" id="password" onblur=" return checkPassword(this)"
+					required />
+				<p id="errorMessageforpassword"></p>
 				<button>login</button>
 			</form>
 		</div>

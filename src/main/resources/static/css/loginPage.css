@@ -59,4 +59,10 @@ body {
 	background: pink;
 	
 }
+#errorMessageforpassword {
+    margin-top: -8px;
+    margin-bottom: 15px;
+    color: red;
+    font-size: 15px;
+}
 

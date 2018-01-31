@@ -3,34 +3,33 @@ window.onload = function() {
 	buildtable();
 }
 
-function deleteStudent1() {
+function deleteStudent() {
 	$.ajax({
 		url : this.name,
 		type : 'DELETE',
 		success : function(result, status) {
-			alert("record deleted successfully");
-			$("tr#row1:not(:first)").remove();
+			 alert("record deleted successfully");
+			 //Materialize.toast('record deleted successfully!', 2000)
+			$("tr#row:not(:first)").remove();
 			buildtable();
 		},
 		error : function(result, status) {
 			alert("Error occured : " + status);
 		}
 	});
-	// this.href = '#';
 }
-
 
 function buildtable() {
 	$.ajax({
-		url : contextPath+'/student',
+		url : contextPath + '/student',
 		type : 'GET',
 		success : function(result, status) {
-			var mixed = document.getElementById("table1");
+			var studentTable = document.getElementById("table1");
 			var tbody = document.createElement("tbody");
 
 			for (var i = 0; i < result.length; i++) {
 				var tr = document.createElement("tr");
-				tr.setAttribute("id", "row1");
+				tr.setAttribute("id", "row");
 				var td1 = document.createElement("td");
 				var txt = document.createTextNode(result[i].id);
 				td1.appendChild(txt);
@@ -70,13 +69,13 @@ function buildtable() {
 				a2.appendChild(linkText2);
 				a2.href = 'delete/' + result[i].id;
 				a2.name = 'delete/' + result[i].id;
-				a2.onclick = deleteStudent1;
+				a2.onclick = deleteStudent;
 				a2.href = '#';
 				td7.appendChild(a2);
 				tr.appendChild(td7);
 				tbody.appendChild(tr);
 
-				mixed.appendChild(tbody);
+				studentTable.appendChild(tbody);
 
 			}
 		},
@@ -85,18 +84,3 @@ function buildtable() {
 		}
 	});
 }
-
-//function getCookie(cname) {
-//	var name = cname + "=";
-//	var ca = document.cookie.split(';');
-//	for (var i = 0; i < ca.length; i++) {
-//		var c = ca[i];
-//		while (c.charAt(0) == ' ') {
-//			c = c.substring(1);
-//		}
-//		if (c.indexOf(name) == 0) {
-//			return c.substring(name.length, c.length);
-//		}
-//	}
-//	return "";
-//}

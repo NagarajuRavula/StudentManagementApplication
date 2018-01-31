@@ -1,6 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -10,14 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>edit details</title>
 
-<link rel="stylesheet" href=${pageContext.request.contextPath}/css/editStudentDetailsPage.css>
+<link rel="stylesheet"
+	href=${pageContext.request.contextPath}/css/editStudentDetailsPage.css>
 </head>
-<body onload="temp()">
-
-	<script
-		src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
-
-
+<script
+	src=${pageContext.request.contextPath}/js/studentDetailsValidation.js>	
+</script>
+<body onload="setGender('${student.getGender()}')">
 
 
 	<center>
@@ -27,16 +26,17 @@
 		</div>
 
 		<c:if test="${not empty errorMessage}">
-             <p>  Error: ${errorMessage}</p>
-        </c:if>
-		
+			<p>Error: ${errorMessage}</p>
+		</c:if>
+
 
 		<button id="backButton" onclick="location.href='editGoBack'">Go
 			Back</button>
 		<button id="editButton" onclick="enableFileds()">Edit Details</button>
 
 		<div class="container">
-			<form id="contact" action=${pageContext.request.contextPath}/edit method="post">
+			<form id="contact" action=${pageContext.request.contextPath}/edit
+				onsubmit="return validateEditDetailsForm()" method="post">
 				<h3>Student Details</h3>
 				<h4>click on Edit button to change details</h4>
 				<fieldset id="formFields" disabled>
@@ -46,7 +46,8 @@
 					<fieldset>
 						<input type="text" name="name" id="name" tabindex="1"
 							value='${student.getName()}' data-tooltip aria-haspopup="true"
-							title="Student Name" onmouseout="return checkName(this)" required>
+							title="Student Name" onblur="return checkName(this)" required>
+						<p id="errorMessageforname"></p>
 					</fieldset>
 					<fieldset>
 						<input type="email" id="email" name="email" tabindex="2"
@@ -61,22 +62,25 @@
 						<input type="text" tabindex="3" id="fatherName" name="fatherName"
 							value='${student.getFatherName()}' data-tooltip
 							aria-haspopup="true" title="Student Father Name"
-							onmouseout="return checkName(this)" required>
+							onblur="return checkName(this)" required>
+						<p id="errorMessageforfatherName"></p>
 					</fieldset>
 					<fieldset>
 						<input type="text" tabindex="4" id="motherName" name="motherName"
 							value='${student.getMothername()}' data-tooltip
 							aria-haspopup="true" title="Student Mother Name"
-							onmouseout="return checkName(this)" required>
+							onblur="return checkName(this)" required>
+						<p id="errorMessageformotherName"></p>
 					</fieldset>
 					<fieldset>
 						<select name="gender" id="gender" data-tooltip
-							aria-haspopup="true" title="Student Gender" >
-							<option >Gender</option>
+							aria-haspopup="true" title="Student Gender">
+							<option>Gender</option>
 							<option>Male</option>
 							<option>Female</option>
 							<option>Other</option>
 						</select>
+						<p id="errorMessageforgender"></p>
 					</fieldset>
 
 					<fieldset>
@@ -97,16 +101,18 @@
 					</fieldset>
 					<fieldset>
 						<input type="number" tabindex="9" name="classrank" id="classrank"
-							value='${student.getClassrank()}' data-tooltip aria-haspopup="true"
-							title="Student Class Rank" required>
+							value='${student.getClassrank()}' data-tooltip
+							aria-haspopup="true" title="Student Class Rank" required>
 					</fieldset>
 					<fieldset>
 						<input type="password" tabindex="10" name="password" id="password"
-							value='${student.getPassword()}' data-tooltip aria-haspopup="true"
-							title="Student Login Password" required>
+							value='${student.getPassword()}' data-tooltip
+							aria-haspopup="true" title="Student Login Password"
+							onmouseout="return checkPassword(this)" required>
+						<p id="errorMessageforpassword"></p>
 					</fieldset>
 					<fieldset>
-						<button name="submit" type="submit" id="educational-submit" onclick="editStudent(this)">Update
+						<button name="submit" type="submit" id="educational-submit">Update
 							details</button>
 					</fieldset>
 

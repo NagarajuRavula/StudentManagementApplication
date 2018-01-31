@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
+.error {
+    background: red;
+  }
 select#gender {
     color: black;
     background-color: #fff;
@@ -160,4 +163,12 @@ fieldset {
 	background: pink;
 	
 }
+
+p#errorMessageforname,#errorMessageforfatherName,#errorMessageformotherName,#errorMessageforgender,#errorMessageforpassword {
+    margin-top: -8px;
+    margin-bottom: 15px;
+    color: red;
+    font-size: 15px;
+}
+
 

@@ -45,6 +45,7 @@ public class SaveController {
 			model.addAttribute("errorMessage", email + " " + properties.getProperty("EXISTING_USER"));
 			model.addAttribute("sname", name);
 			model.addAttribute("semail", email);
+			model.addAttribute("sgender",gender);
 			model.addAttribute("sfatherName", fatherName);
 			model.addAttribute("smotherName", motherName);
 			return "studentPersonalDetails";

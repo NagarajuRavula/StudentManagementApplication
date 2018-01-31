@@ -12,26 +12,6 @@ jobs:
       - run: sudo docker build -t testapp .
       - run: sudo docker tag testapp $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM 
       - run: sudo docker push $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM
-  #deploy: 
-   #  working_directory: ~/repo
-    # machine:
-     #   image: build
-     #steps:
-      # - run: sudo docker tag testapp $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM 
-       #- run: sudo docker push $DOCKER_USER/$DOCKER_REPO:$CIRCLE_BUILD_NUM
-
-
-#workflows:
- # version: 2
-  #build_and_deploy:
-   # jobs:
-    #  - build
-     # - deploy-approval:
-      #   type: approval
-       #  requires:
-        #   - build   
-      #- deploy:
-       #  requires:
-        #   - deploy-approval
+  
 
 

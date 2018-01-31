@@ -142,3 +142,10 @@ fieldset {
   outline: 0;
   border: 1px solid #aaa;
 }
+p#errorMessageforname,#errorMessageforfatherName,#errorMessageformotherName,#errorMessageforgender {
+    margin-top: -8px;
+    margin-bottom: 15px;
+    color: red;
+    font-size: 15px;
+}
+
