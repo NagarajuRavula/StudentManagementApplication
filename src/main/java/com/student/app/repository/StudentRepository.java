@@ -1,5 +1,9 @@
 package com.student.app.repository;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +32,6 @@ public interface StudentRepository extends CrudRepository<Student, Integer>{
         @Transactional
 	    public int deleteById(int id);
 	    
-	    
-	    
+        List<Student> findByRole(String role);
 
 }

@@ -1,6 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"
+%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -12,18 +13,17 @@
 
 <link rel="stylesheet"
 	href=${pageContext.request.contextPath}/css/editStudentDetailsPage.css>
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script
 	src=${pageContext.request.contextPath}/js/studentDetailsValidation.js>	
 </script>
 <body onload="setGender('${student.getGender()}')">
 
-
+ <%@include file="header.jsp" %>
 	<center>
-		<div class="header">
-			<h2>Student Management Application</h2>
-
-		</div>
+	
 
 		<c:if test="${not empty errorMessage}">
 			<p>Error: ${errorMessage}</p>
@@ -37,7 +37,7 @@
 		<div class="container">
 			<form id="contact" action=${pageContext.request.contextPath}/edit
 				onsubmit="return validateEditDetailsForm()" method="post">
-				<h3>Student Details</h3>
+				<h3>User Details</h3>
 				<h4>click on Edit button to change details</h4>
 				<fieldset id="formFields" disabled>
 					<fieldset>
@@ -46,7 +46,7 @@
 					<fieldset>
 						<input type="text" name="name" id="name" tabindex="1"
 							value='${student.getName()}' data-tooltip aria-haspopup="true"
-							title="Student Name" onblur="return checkName(this)" required>
+							title="Student Name" onchange="return checkName(this)" required>
 						<p id="errorMessageforname"></p>
 					</fieldset>
 					<fieldset>
@@ -62,14 +62,14 @@
 						<input type="text" tabindex="3" id="fatherName" name="fatherName"
 							value='${student.getFatherName()}' data-tooltip
 							aria-haspopup="true" title="Student Father Name"
-							onblur="return checkName(this)" required>
+							onchange="return checkName(this)" required>
 						<p id="errorMessageforfatherName"></p>
 					</fieldset>
 					<fieldset>
 						<input type="text" tabindex="4" id="motherName" name="motherName"
 							value='${student.getMothername()}' data-tooltip
 							aria-haspopup="true" title="Student Mother Name"
-							onblur="return checkName(this)" required>
+							onchange="return checkName(this)" required>
 						<p id="errorMessageformotherName"></p>
 					</fieldset>
 					<fieldset>
@@ -108,7 +108,7 @@
 						<input type="password" tabindex="10" name="password" id="password"
 							value='${student.getPassword()}' data-tooltip
 							aria-haspopup="true" title="Student Login Password"
-							onmouseout="return checkPassword(this)" required>
+							onchange="return checkPassword(this)" required>
 						<p id="errorMessageforpassword"></p>
 					</fieldset>
 					<fieldset>

@@ -13,12 +13,8 @@
 	src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
 <body onload="setGender('${sgender}')">
 
+ <%@include file="header.jsp" %>
 	<center>
-		<div class="header">
-			<h1>Student Management Application</h1>
-
-		</div>
-
 		<c:if test="${not empty errorMessage}">
 			<p id="message">Error: ${errorMessage}</p>
 		</c:if>
@@ -30,7 +26,7 @@
 				<h4>Enter the student personal data</h4>
 				<fieldset>
 					<input placeholder="Enter name" type="text" name="name" id="name"
-						tabindex="1" onblur="return checkName(this)" value="${sname}"
+						tabindex="1" onchange="return checkName(this)" value="${sname}"
 						autofocus required>
 					<p id="errorMessageforname"></p>
 				</fieldset>
@@ -41,13 +37,13 @@
 				</fieldset>
 				<fieldset>
 					<input placeholder="Enter Father Name" type="text" tabindex="3"
-						id="fatherName" name="fatherName" onblur="return checkName(this)"
+						id="fatherName" name="fatherName" onchange="return checkName(this)"
 						value="${sfatherName}" required>
 					<p id="errorMessageforfatherName"></p>
 				</fieldset>
 				<fieldset>
 					<input placeholder="Enter Mother Name" type="text" tabindex="4"
-						id="motherName" name="motherName" onblur="return checkName(this)"
+						id="motherName" name="motherName" onchange="return checkName(this)"
 						value="${smotherName}" required>
 					<p id="errorMessageformotherName"></p>
 				</fieldset>

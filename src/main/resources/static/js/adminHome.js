@@ -7,13 +7,14 @@ function deleteStudent() {
 		url : this.name,
 		type : 'DELETE',
 		success : function(result, status) {
-			 alert("record deleted successfully");
-			 //Materialize.toast('record deleted successfully!', 2000)
+			// alert("record deleted successfully");
+			toastr.success('record deleted successfully!', 'Success', {timeOut: 2000})
 			$("tr#row:not(:first)").remove();
 			buildtable();
 		},
 		error : function(result, status) {
-			alert("Error occured : " + status);
+			//alert("Error occured : " + status);
+			toastr.error('Error occured!', 'Error', {timeOut: 2000})
 		}
 	});
 }
@@ -58,6 +59,8 @@ function buildtable() {
 				var a1 = document.createElement('a');
 				var linkText1 = document.createTextNode("View/Edit");
 				a1.appendChild(linkText1);
+				a1.id='edit_anchor';
+				a1.className='success btn btn-success';
 				a1.href = 'editStudentDetails?email=' + result[i].email;
 				td6.appendChild(a1);
 				tr.appendChild(td6);
@@ -67,6 +70,8 @@ function buildtable() {
 				var linkText2 = document.createTextNode("Delete");
 				a2.appendChild(linkText2);
 				a2.href = 'delete/' + result[i].id;
+				a2.id='delete_anchor';
+				a2.className="success btn btn-success"
 				a2.name = 'delete/' + result[i].id;
 				a2.onclick = deleteStudent;
 				a2.href = '#';
@@ -82,4 +87,14 @@ function buildtable() {
 			alert("Error occured : " + status);
 		}
 	});
+}
+
+
+
+
+function toast() {
+
+	console.log("toast-------->")
+	toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
+
 }

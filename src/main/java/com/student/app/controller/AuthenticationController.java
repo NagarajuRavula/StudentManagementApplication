@@ -95,12 +95,13 @@ public class AuthenticationController {
 				cookie1.setMaxAge(1800);
 				cookie1.setPath("/");
 				response.addCookie(cookie1);
+				httpSession.setAttribute("loggedInUser",studentService.getStudentByEmail(email) );
 				if(user.getRole().equals("student")) {
-					model.addAttribute("student", studentService.getStudentByEmail(email));
+					//model.addAttribute("student", studentService.getStudentByEmail(email));
 					return "studentHome";
 				}
 				else {
-					model.addAttribute("admin", studentService.getStudentByEmail(email));
+					//model.addAttribute("admin", studentService.getStudentByEmail(email));
 					return "adminHome";
 				}
 			}

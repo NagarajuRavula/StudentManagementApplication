@@ -1,11 +1,9 @@
 p#logedInName  {
     margin-left: 830px;
 }
-a{
-	background-color: pink;
-}
 a#logout{
 	margin-left: 1030px;
+/*     background-color: pink;	 */
 }
 
 .closebtn:hover {
@@ -17,32 +15,21 @@ a#logout{
     
 
 }
+tr {
+	height:80;
+}
 tr:hover {
-          background-color: #3465a4;
+          background-color: #729fcf;
         }
- .header{
-	background-color: #ceb291;
-	margin-left: 100px;
-    margin-right: 100px;
-        height: 40px;
-}
-.header:hover{
-	background: pink;
-	
-}
 th {
-    background-color: brown;
-}
-a{
-	background-color: pink;
-}
-   
+    background-color: #dee2dc;
+}   
 b#email {
     color: chocolate;
 }
        
 body{
-background: #76b852        
+background: #f9f9f9       
 }
 
 .tableDiv
@@ -50,5 +37,16 @@ background: #76b852
 	background: #877678;
 	margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 20px;
 }
-
+td {
+	color:#020202
+}
+a#delete_anchor {
+	color:#c5454f;
+	background-color: white;
+}
+a#edit_anchor {
+	color:#3c763d;
+	background-color: white;
+}

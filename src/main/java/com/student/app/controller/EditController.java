@@ -67,15 +67,21 @@ public class EditController {
 		student.setName(name);
 		student.setPassword(password);
 		student.setPresentClass(presentClass);
+		httpSession=request.getSession();
+		if(httpSession.getAttribute("role").equals("admin")) {
+			student.setRole("admin");
+			httpSession.setAttribute("loggedInUser", student);
+		}
 		studentService.updateStudent(student);
 
 		httpSession = request.getSession(false);
 		if (httpSession.getAttribute("role").equals("admin")) {
 
-			model.addAttribute("admin", studentService.getStudentByEmail((String)httpSession.getAttribute("email")));
+			//model.addAttribute("admin", studentService.getStudentByEmail((String)httpSession.getAttribute("email")));
 			return "adminHome";
 		} else {
-			model.addAttribute("student", studentService.getStudentByEmail(email));
+			//model.addAttribute("student", studentService.getStudentByEmail(email));
+			httpSession.setAttribute("loggedInUser",studentService.getStudentByEmail(email) );
 			return "studentHome";
 
 		}
@@ -86,11 +92,11 @@ public class EditController {
 		logger.info("editGoBack() entered");
 		httpSession = request.getSession(false);
 		if (httpSession.getAttribute("role").equals("admin")) {
-			model.addAttribute("students", studentService.getAllStudents());
+			//model.addAttribute("students", studentService.getAllStudents());
 			return "adminHome";
 		} else {
-			String email = (String) httpSession.getAttribute("email");
-			model.addAttribute("student", studentService.getStudentByEmail(email));
+			//String email = (String) httpSession.getAttribute("email");
+			//model.addAttribute("student", studentService.getStudentByEmail(email));
 			return "studentHome";
 		}
 

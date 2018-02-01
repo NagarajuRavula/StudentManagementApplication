@@ -13,13 +13,14 @@ function checkName(nameObj) {
 	if (!name.match(regEx)) {
 		document.getElementById("errorMessagefor" + nameObj.name).innerHTML = nameErrorMessage;
 		nameObj.focus();
-		index = errors.indexOf(nameErrorMessage);
+		index = errors.indexOf(nameObj.name);
+		
 		if (index == -1) {
-			errors.push(nameErrorMessage);
+			errors.push(nameObj.name);
 		}
 	} else {
 		document.getElementById("errorMessagefor" + nameObj.name).innerHTML = "";
-		index = errors.indexOf(nameErrorMessage);
+		index = errors.indexOf(nameObj.name);
 		if (index > -1) {
 			errors.splice(index, 1);
 		}
@@ -37,10 +38,8 @@ function checkGenderAndValidatePersonalForm() {
 	}
 
 	else {
-		//return true;
+		
 		document.getElementById("errorMessageforgender").innerHTML = "";
-		console.log(errors.length);
-		console.log(errors);
 		if (errors.length > 0)
 			return false;
 		else
@@ -59,14 +58,14 @@ function checkPassword(passwordObj) {
 	if (!password.match(regEx)) {
 		document.getElementById("errorMessageforpassword").innerHTML = passwordErrorMessage;
 		passwordObj.focus()
-		index = errors.indexOf(passwordErrorMessage);
+		index = errors.indexOf(passwordObj.name);
 		if (index == -1) {
-			errors.push(passwordErrorMessage);
+			errors.push(passwordObj.name);
 		}
 	} else {
 		document.getElementById("errorMessageforpassword").innerHTML = "";
 		// return true;
-		index = errors.indexOf(passwordErrorMessage);
+		index = errors.indexOf(passwordObj.name);
 		if (index > -1) {
 			errors.splice(index, 1);
 		}
@@ -83,8 +82,6 @@ function setGender(valueToSelect) {
 }
 
 function validateEducationForm() {
-	console.log(errors.length);
-	console.log(errors);
 	if (errors.length > 0)
 		return false;
 	else
@@ -105,8 +102,6 @@ function validateEditDetailsForm() {
 
 	else {
 		document.getElementById("errorMessageforgender").innerHTML = "";
-		console.log(errors.length);
-		console.log(errors);
 		if (errors.length > 0)
 			return false;
 		else

@@ -86,7 +86,7 @@ public class SaveController {
 		httpSession.removeAttribute("smotherName");
 		httpSession.removeAttribute("sfatherName");
 		httpSession.removeAttribute("sgender");
-		model.addAttribute("admin", studentService.getStudentByEmail((String)httpSession.getAttribute("email")));
+	//	model.addAttribute("admin", studentService.getStudentByEmail((String)httpSession.getAttribute("email")));
 		return "adminHome";
 	}
 }

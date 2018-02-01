@@ -19,7 +19,7 @@ public class StudentDaoImpl implements StudentDao {
 	@Override
 	public List<Student> getAllStudents() {
 		logger.info("getAllStudents() entered");
-		return (List<Student>) studentRepository.findAll();
+		return (List<Student>) studentRepository.findByRole("student");
 	}
 
 	@Override

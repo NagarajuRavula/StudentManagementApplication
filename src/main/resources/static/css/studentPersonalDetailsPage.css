@@ -1,7 +1,7 @@
-body {
-  background: #76b852; 
+/* body { */
+/*   background: #f9f9f9;  */
         
-}
+/* } */
 select#gender {
     color: black;
     background-color: #fff;
@@ -47,14 +47,14 @@ h1{
   text-rendering: optimizeLegibility;
 }
 
-body {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 100;
-  font-size: 12px;
-  line-height: 30px;
-  color: #777;
-  background: #4CAF50;
-}
+/* body { */
+/*   font-family: "Roboto", Helvetica, Arial, sans-serif; */
+/*   font-weight: 100; */
+/*   font-size: 12px; */
+/*   line-height: 30px; */
+/*   color: #777; */
+/*   background: #f9f9f9; */
+/* } */
 
 .container {
   max-width: 400px;
@@ -76,7 +76,7 @@ body {
 }
 
 #contact {
-  background: #F9F9F9;
+  background: #d0cbcb;
   padding: 25px;
   margin: 150px 0;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -119,7 +119,7 @@ fieldset {
   cursor: pointer;
   width: 100%;
   border: none;
-  background: #4CAF50;
+  background: #0e2635;
   color: #FFF;
   margin: 0 0 5px;
   padding: 10px;

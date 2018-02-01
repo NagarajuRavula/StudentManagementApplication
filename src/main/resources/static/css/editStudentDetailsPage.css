@@ -26,14 +26,6 @@ p {
   text-rendering: optimizeLegibility;
 }
 
-body {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 100;
-  font-size: 12px;
-  line-height: 30px;
-  color: #777;
-  background: #4CAF50;
-}
 
 .container {
   max-width: 400px;
@@ -51,7 +43,7 @@ body {
 }
 
 #contact {
-  background: #F9F9F9;
+  background: #d0cbcb;
   padding: 25px;
   margin: 10px 0;
       width: 130%;
@@ -128,7 +120,7 @@ fieldset {
   cursor: pointer;
   width: 100%;
   border: none;
-  background: #4CAF50;
+  background: #0e2635;
   color: #FFF;
   margin: 0 0 5px;
   padding: 10px;
@@ -152,17 +144,7 @@ fieldset {
   outline: 0;
   border: 1px solid #aaa;
 }
-.header{
-	background-color: #ceb291;
-	margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 20px;
-        height: 40px;
-}
-.header:hover{
-	background: pink;
-	
-}
+
 
 p#errorMessageforname,#errorMessageforfatherName,#errorMessageformotherName,#errorMessageforgender,#errorMessageforpassword {
     margin-top: -8px;

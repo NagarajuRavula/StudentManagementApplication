@@ -30,12 +30,12 @@
 			<form class="login-form"
 				action=${pageContext.request.contextPath}/authenticate method="post"
 				onsubmit="return validateLoginForm()">
-				<input type="email" placeholder="email" name="email" id="name"
-					required /> <input type="password" placeholder="password"
-					name="password" id="password" onblur=" return checkPassword(this)"
+				<input type="email" placeholder="email" name="email" id="name" tabindex="1"
+					required /> <input type="password" placeholder="password" tabindex="2"
+					name="password" id="password" onchange=" return checkPassword(this)"
 					required />
 				<p id="errorMessageforpassword"></p>
-				<button>login</button>
+				<button >login</button>
 			</form>
 		</div>
 	</div>

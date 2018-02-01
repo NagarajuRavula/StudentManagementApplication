@@ -8,17 +8,14 @@
 </head>
 <link rel="stylesheet"
 	href=${pageContext.request.contextPath}/css/studentEducationDetailsPage.css>
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <body>
 	<script
 		src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
-<html>
 <body>
+   <%@include file="header.jsp" %>
 	<center>
-
-		<div class="header">
-			<h2>Student Management Application</h2>
-
-		</div>
 		<div class="container">
 
 			<form id="contact"
@@ -50,7 +47,7 @@
 				<fieldset>
 					<input placeholder="Enter Student Login Password" type="password"
 						tabindex="5" name="password" id="password"
-						onblur="return checkPassword(this)" required>
+						onchange="return checkPassword(this)" required>
 					<p id="errorMessageforpassword"></p>
 				</fieldset>
 				<fieldset>

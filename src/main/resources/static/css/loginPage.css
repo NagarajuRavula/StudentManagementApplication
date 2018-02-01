@@ -9,7 +9,7 @@
 .form {
   position: relative;
   z-index: 1;
-  background: #FFFFFF;
+  background: #a38f8f;
   max-width: 360px;
   margin: 0 auto 100px;
   padding: 45px;
@@ -42,12 +42,12 @@
   cursor: pointer;
 }
  .form button:hover {
-  background:#4CAF50;
+  background:#3b557b;
 } 
 
 
 body {
-  background: #76b852; 
+  background: #f9f9f9; 
         
 } 
 .header{
