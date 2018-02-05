@@ -9,7 +9,7 @@
 <style>
 body {margin:0;}
 
-ul {
+ul#nav_list {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -18,6 +18,10 @@ ul {
     position: fixed;
     top: 0;
     width: 100%;
+  
+}
+div#nav{
+  z-index: 1;
 }
 
 li {
@@ -33,7 +37,7 @@ li a {
 }
 
 li a:hover {
-    background-color: #111;
+    background-color: #4CAF50;
 }
 
 .active {
@@ -41,7 +45,7 @@ li a:hover {
 }
 
 a#logout1{
-	margin-left: 900px;
+	margin-left: 630px;
 }
 .header{
 	background-color: #ceb291;
@@ -62,13 +66,17 @@ font-size: 30px;
 </head>
 <body>
  <% Student User=(Student)session.getAttribute("loggedInUser"); %>
-
-  <ul>
+ 
+<div id="nav">
+  <ul id="nav_list">
   <li><a href= "${pageContext.request.contextPath}/adminHome">Home</a></li>
   <li><a href="${pageContext.request.contextPath}/addStudent">Add Student</a></li>
   <li><a href="${pageContext.request.contextPath}/editStudentDetails?email=<%=User.getEmail()%>">Profile</a></li>
+  <li><a href="${pageContext.request.contextPath}/studentReport">Student Report</a></li>
+  <li><a href="${pageContext.request.contextPath}/studentIssues">Student Issues</a></li>
   <li><a id="logout1"  href=${pageContext.request.contextPath}/logout>Logout <i class="fa fa-sign-out"></i></a></li>
 </ul>
+</div>
 	<div class="header">
 			<h2 id="title" >Student Management Application</h2>
 		</div>

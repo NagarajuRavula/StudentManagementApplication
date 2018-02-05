@@ -39,6 +39,13 @@
 <link
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
 	rel="stylesheet">
+	
+<!-- 	files needed for styling of data table&js files -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet">	
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
   <%@include file="header.jsp" %>
@@ -51,26 +58,15 @@
 		<br>
 		<h3>Students List</h3>
 	</center>
-
-	<div class="tableDiv" id="tableDiv">
-		<table border='1' width='100%' id="table1">
-			<tr id="row">
-				<th>Id</th>
-				<th>Name</th>
-				<th>Father Name</th>
-				<th>Email</th>
-				<th>Gender</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-		</table>
-	</div>
-
-
-
+	
 <!-- 	<button class="success btn btn-success" onclick="toast()">Success</button> -->
 
- <%@include file="footer.jsp" %>
+
+<!-- <div id="refresh"></div> -->
+
+<%@include file="footer.jsp" %>
+
+
 
 </body>
 </html>

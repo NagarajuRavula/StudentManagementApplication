@@ -37,7 +37,7 @@
 		<div class="container">
 			<form id="contact" action=${pageContext.request.contextPath}/edit
 				onsubmit="return validateEditDetailsForm()" method="post">
-				<h3>User Details</h3>
+				<h3>${student.getRole()} Details</h3>
 				<h4>click on Edit button to change details</h4>
 				<fieldset id="formFields" disabled>
 					<fieldset>
@@ -56,7 +56,11 @@
 					</fieldset>
 					<fieldset>
 						<input type="hidden" id="'originalEmail'" name="originalEmail"
-							value='${student.getEmail()}' required>
+							value='${student.getEmail()}'>
+					</fieldset>
+					<fieldset>
+						<input type="hidden" id="'role'" name="role"
+							value='${student.getRole()}'>
 					</fieldset>
 					<fieldset>
 						<input type="text" tabindex="3" id="fatherName" name="fatherName"

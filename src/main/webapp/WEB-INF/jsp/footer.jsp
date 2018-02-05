@@ -2,15 +2,15 @@
 <html>
 <head>
 <style>
-
- footer { 
-     padding: 5px; 
-     color: white; 
-     background-color: black; 
-     text-align: center; 
+footer { 
+/*       padding: 5px;  */
+      color: white;  
+      background-color: black;  
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
  } 
-
-
 </style>
 </head>
 <body>

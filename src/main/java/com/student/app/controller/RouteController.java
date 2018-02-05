@@ -11,7 +11,17 @@ public class RouteController {
 
 
 	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
-	public String listAllStudents(HttpServletRequest request,HttpServletResponse response) {
+	public String adminHome(HttpServletRequest request,HttpServletResponse response) {
 		return "adminHome";
+	}
+	
+	@RequestMapping(value = "/studentReport", method = RequestMethod.GET)
+	public String studentReport(HttpServletRequest request,HttpServletResponse response) {
+		return "studentReport";
+	}
+	
+	@RequestMapping(value = "/studentIssues", method = RequestMethod.GET)
+	public String studentIssues(HttpServletRequest request,HttpServletResponse response) {
+		return "studentIssues";
 	}
 }

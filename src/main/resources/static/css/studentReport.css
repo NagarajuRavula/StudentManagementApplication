@@ -1,0 +1,15 @@
+div#chartContainer_academicReport {
+	height: 300px; 
+	width: 65%;
+	margin-top: 20px;
+}
+
+div#chartContainer_attendenceReport {
+	height: 300px; 
+	width: 50%;
+	margin-top: 20px;
+}
+/* ul.pagination { */
+/* 	//margin-top: 400px; */
+/* 	position: relative; */
+/* } */

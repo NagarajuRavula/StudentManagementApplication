@@ -41,7 +41,7 @@ public class EditController {
 			@RequestParam("fatherName") String fatherName, @RequestParam("motherName") String motherName,
 			@RequestParam("gender") String gender, @RequestParam("presentClass") int presentClass,
 			@RequestParam("marks") double marks, @RequestParam("attendence") double attendence,
-			@RequestParam("classrank") int classrank, @RequestParam("password") String password,
+			@RequestParam("classrank") int classrank,@RequestParam("role") String role, @RequestParam("password") String password,
 			HttpServletRequest request, ModelMap model,HttpServletResponse response) {
 		logger.info("edit() entered");
 		Properties properties = studentService.getProperties();
@@ -65,14 +65,18 @@ public class EditController {
 		student.setMarks(marks);
 		student.setMothername(motherName);
 		student.setName(name);
+		student.setRole(role);
 		student.setPassword(password);
 		student.setPresentClass(presentClass);
+		studentService.updateStudent(student);
 		httpSession=request.getSession();
-		if(httpSession.getAttribute("role").equals("admin")) {
-			student.setRole("admin");
+		if(role=="admin") {
 			httpSession.setAttribute("loggedInUser", student);
 		}
-		studentService.updateStudent(student);
+		if(httpSession.getAttribute("role").equals("student")) {
+			httpSession.setAttribute("loggedInUser", student);
+		}
+	
 
 		httpSession = request.getSession(false);
 		if (httpSession.getAttribute("role").equals("admin")) {
