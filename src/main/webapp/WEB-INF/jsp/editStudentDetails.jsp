@@ -116,7 +116,7 @@
 						<p id="errorMessageforpassword"></p>
 					</fieldset>
 					<fieldset>
-						<button name="submit" type="submit" id="educational-submit">Update
+						<button name="submit" type="submit" id="educational-submit" >Update
 							details</button>
 					</fieldset>
 
