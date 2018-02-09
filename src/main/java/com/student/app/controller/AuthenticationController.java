@@ -75,6 +75,7 @@ public class AuthenticationController {
 			if(user.getPassword().equals(password)) {
 				httpSession.setAttribute("email", email);
 				httpSession.setAttribute("role", user.getRole());
+				//httpSession.setAttribute("id", user.getId());
 				long nowMillis = System.currentTimeMillis();
 				Date now = new Date(nowMillis);
 				// System.out.println("Token Id: "+user.getId()+""+now.getTime());

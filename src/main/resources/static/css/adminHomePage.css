@@ -18,9 +18,7 @@ a#logout{
 tr {
 	height:80;
 }
-tr:hover {
-          background-color: #729fcf;
-        }
+
 th {
     background-color: #dee2dc;
 }   
@@ -51,3 +49,9 @@ a#edit_anchor {
 	background-color: white;
 }
 
+
+/* pagination class */
+.col-sm-7 {
+    margin-bottom: 36px;
+    margin-top: 7px;
+}

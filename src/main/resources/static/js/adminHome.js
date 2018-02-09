@@ -3,22 +3,31 @@ window.onload = function() {
 }
 
 function deleteStudent() {
-	row_id=this.id; //storing the id of deleted row in global var row_id
+//	row_id=this.id; //storing the id of deleted row in global var row_id
 	$.ajax({
 		url : this.name,
 		type : 'DELETE',
 		success : function(result, status) {
-			toastr.success('record deleted successfully!', 'Success', {timeOut: 2000})
-			$("tr#"+row_id).remove();			
-			//buildtable();	
+			console.log("res"+result);
+			toastr.success(result, 'Success', {timeOut: 2000})
+			//$("tr#"+row_id).remove();	 //this one simply mask the row of table		
+			buildtable();	
 		},
 		error : function(result, status) {
-			toastr.error('Error occured!', 'Error', {timeOut: 2000})
+			toastr.error(result, 'Error', {timeOut: 2000})
 		}
 	});
 }
 
 function buildtable() {
+	
+	var table =document.getElementById("table1_wrapper");
+	if(table!=null) {
+		console.log("there....")
+		table.remove();
+	}
+	
+	
 	$.ajax({
 		url : contextPath + '/student',
 		type : 'GET',
@@ -138,14 +147,16 @@ function buildtable() {
 				tr.appendChild(td7);
 				tbody.appendChild(tr);
 
-				studentTable.appendChild(tbody);
+				//studentTable.appendChild(tbody);
 			}
+			studentTable.appendChild(tbody);
 			console.log(studentTable);
 			$('#table1').DataTable()
 
 		},
 		error : function(result, status) {
-			alert("Error occured : " + status);
+			//alert("Error occured : " + status);
+			toastr.error(status, 'Error', {timeOut: 2000})
 		}
 	});
 }

@@ -126,6 +126,7 @@
 
 
 	</center>
+	<%@include file="footer.jsp" %>
 </body>
 </head>
 </html>

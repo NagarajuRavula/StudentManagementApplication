@@ -45,7 +45,7 @@ li a:hover {
 }
 
 a#logout1{
-	margin-left: 630px;
+	margin-left: 550px;
 }
 .header{
 	background-color: #ceb291;
@@ -74,6 +74,7 @@ font-size: 30px;
   <li><a href="${pageContext.request.contextPath}/editStudentDetails?email=<%=User.getEmail()%>">Profile</a></li>
   <li><a href="${pageContext.request.contextPath}/studentReport">Student Report</a></li>
   <li><a href="${pageContext.request.contextPath}/studentIssues">Student Issues</a></li>
+  <li><a href="${pageContext.request.contextPath}/addPost">Add Post</a></li>
   <li><a id="logout1"  href=${pageContext.request.contextPath}/logout>Logout <i class="fa fa-sign-out"></i></a></li>
 </ul>
 </div>

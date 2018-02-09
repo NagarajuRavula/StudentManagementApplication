@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class RouteController {
 
@@ -24,4 +25,11 @@ public class RouteController {
 	public String studentIssues(HttpServletRequest request,HttpServletResponse response) {
 		return "studentIssues";
 	}
+	
+	@RequestMapping(value = "/addPost", method = RequestMethod.GET)
+	public String addPost(HttpServletRequest request,HttpServletResponse response) {
+		return "postNews";
+	}
+	
+	
 }

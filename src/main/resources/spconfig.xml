@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
  
-  <bean id="studentService" class="com.student.app.service.StudentServiceImpl" autowire="byType">
+  <bean id="studentServiceimpl" class="com.student.app.service.StudentServiceImpl" autowire="byType">
   </bean>
   <bean id="authenticationController" class="com.student.app.controller.AuthenticationController" autowire="byType">
   </bean>
@@ -30,6 +30,21 @@
   </bean>
   
    <bean id="authenticationRestController" class="com.student.app.restcontroller.AuthenticationRestController"  autowire="byType">
+  </bean>
+  
+     <bean id="issueController" class="com.student.app.controller.IssueController"  autowire="byType">
+  </bean>
+    <bean id="issueServiceImpl" class="com.student.app.service.IssueServiceImpl"  autowire="byType">
+  </bean>
+      <bean id="issueDaoImpl" class="com.student.app.dao.IssueDaoImpl"  autowire="byType">
+  </bean>
+  
+  
+  <bean id="postController" class="com.student.app.controller.PostController"  autowire="byType">
+  </bean>
+   <bean id="postDaoImpl" class="com.student.app.dao.PostDaoImpl"  autowire="byType">
+  </bean>
+  <bean id="postServiceImpl" class="com.student.app.service.PostServiceImpl"  autowire="byType">
   </bean>
   
   <bean id="studentDaoImpl" class="com.student.app.dao.StudentDaoImpl" autowire="byType">

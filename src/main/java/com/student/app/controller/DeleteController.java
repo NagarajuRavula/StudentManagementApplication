@@ -2,12 +2,15 @@ package com.student.app.controller;
 
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.student.app.service.StudentService;
 
@@ -22,8 +25,9 @@ public class DeleteController {
 		this.studentService = studentService;
 	}
 
-	@RequestMapping(value = "/delete")
-	public String delete(@PathParam("id") int id, ModelMap model) {
+	@RequestMapping(value = "/delete",method = RequestMethod.DELETE)
+	public String delete(@PathParam("id") int id, ModelMap model,HttpServletRequest request,HttpServletResponse response) {
+		System.out.println("delete enteres--------------(:");
 		logger.info("delete() entered with id:" + id);
 		Properties properties = studentService.getProperties();
 		int status = studentService.deleteById(id);
