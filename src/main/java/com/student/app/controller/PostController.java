@@ -54,4 +54,25 @@ public class PostController {
 			return new ResponseEntity<String>("Error Occurd!", HttpStatus.NOT_FOUND);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/post", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Post>> listAllPosts(HttpServletRequest request,HttpServletResponse response) {
+		logger.info("listAllPosts() entered");
+		List<Post> posts = postService.getAllPosts();
+		if (posts.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
+	}
+	
+	
+	
+	
 }

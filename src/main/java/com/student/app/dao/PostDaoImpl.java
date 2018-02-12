@@ -28,8 +28,8 @@ public class PostDaoImpl implements PostDao{
 
 	@Override
 	public List<Post> getAllPosts() {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("getAllPosts() entered:");
+		return (List<Post>)postRepository.findAll();
 	}
 
 }

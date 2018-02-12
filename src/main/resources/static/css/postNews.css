@@ -14,23 +14,22 @@ textarea#text_area {
 div.container {
 	margin-top: 10px;
 }
-
-
-/* h3#title { */
-/* 	font-size: 24px; */
-/* 	font-family: inherit; */
-/*     font-weight: 500; */
-/*     line-height: 1.3; */
-/*     text-align: center; */
-/* } */
 ul#list {
 	margin-left: 475px;
 }
 .nav>li>a {
 	color: #333;
-//	background-color: graytext;
 }
 
-#new_post,#posts{
+#new_post,#post_list{
 	background-color: white;
+}
+
+/* pagination class */
+.col-sm-7 {
+    margin-bottom: 36px;
+    margin-top: 7px;
+}
+#post_message{
+	width: 500px;
 }

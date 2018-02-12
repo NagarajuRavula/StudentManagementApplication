@@ -43,17 +43,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   
-  <!--  library for toastr -->
-<script type="text/javascript"
-	src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<link
-	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
-	rel="stylesheet">
+<!--   <!--  library for toastr --> -->
+<!-- <script type="text/javascript" -->
+<!-- 	src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script> -->
+<!-- <link -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" -->
+<!-- 	rel="stylesheet"> -->
+<!-- <script type="text/javascript" -->
+<!-- 	src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> -->
+<!-- <link -->
+<!-- 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" -->
+<!-- 	rel="stylesheet"> -->
 
 </head>
 
@@ -71,7 +71,7 @@
  
  	<ul class="nav nav-pills" id="list">
     	<li class="active"><a data-toggle="pill" href="#new_post" >New Post</a></li>
-    	<li><a data-toggle="pill" href="#post_list" onclick="postList();" >Post List</a></li>
+    	<li><a data-toggle="pill" href="#post_list" onclick="postList()" >Post List</a></li>
     </ul>
   
   	<div class="tab-content">

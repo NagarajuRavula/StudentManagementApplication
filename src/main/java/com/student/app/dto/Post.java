@@ -24,7 +24,7 @@ public class Post {
 	private Date postedDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "student_id")
+	@JoinColumn(name = "admin_id")
 	private Student admin;
 
 	
