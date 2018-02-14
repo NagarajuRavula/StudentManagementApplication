@@ -52,4 +52,13 @@ public class IssueDaoImpl implements IssueDao {
 	        	return 1;
 	}
 
+	@Override
+	public int saveIssue(Issue issue) {
+		logger.info("saveIssue() entered:");
+		if(issueRepository.save(issue)==null) 
+			return 0;
+		else
+			return 1;
+	}
+
 }

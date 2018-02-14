@@ -21,7 +21,19 @@
 </script>
 <body onload="setGender('${student.getGender()}')">
 
- <%@include file="header.jsp" %>
+ <% Student user=(Student)session.getAttribute("loggedInUser");
+    String role=user.getRole();
+    if(role.equals("admin")) {
+ %>
+ 
+ <%@include file="adminHeader.jsp" %>
+ 
+ <%}
+    else {
+    	out.println("Role is student------------->");
+  %>
+   <%@include file="studentHeader.jsp" %>
+  <%} %>
 	<center>
 	
 

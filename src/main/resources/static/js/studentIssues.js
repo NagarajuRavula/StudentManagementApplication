@@ -96,7 +96,8 @@ function pendingIssues() {
 				
 				
 				var td4 = document.createElement("td");
-				var txt = document.createTextNode(filteredResult[i].reportedDate);
+				var date=new Date(filteredResult[i].reportedDate);
+				var txt = document.createTextNode(date.toDateString());
 				td4.appendChild(txt);
 				tr.appendChild(td4);
 

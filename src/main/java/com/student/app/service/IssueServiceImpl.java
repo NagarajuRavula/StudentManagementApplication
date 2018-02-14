@@ -37,4 +37,11 @@ public class IssueServiceImpl implements IssueService{
 		return issueDao.issueToIgnore(id);
 	}
 
+
+	@Override
+	public int saveIssue(Issue issue) {
+		logger.info("saveIssue() entered:");
+		return issueDao.saveIssue(issue);
+	}
+
 }

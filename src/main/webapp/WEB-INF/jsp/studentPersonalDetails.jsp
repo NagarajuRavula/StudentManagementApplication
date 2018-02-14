@@ -16,7 +16,7 @@
 	src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
 <body onload="setGender('${sgender}')">
 
- <%@include file="header.jsp" %>
+ <%@include file="adminHeader.jsp" %>
 	<center>
 		<c:if test="${not empty errorMessage}">
 			<p id="message">Error: ${errorMessage}</p>

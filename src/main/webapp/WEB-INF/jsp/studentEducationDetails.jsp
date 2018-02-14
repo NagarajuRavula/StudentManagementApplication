@@ -18,7 +18,7 @@
 	<script
 		src=${pageContext.request.contextPath}/js/studentDetailsValidation.js></script>
 <body>
-   <%@include file="header.jsp" %>
+   <%@include file="adminHeader.jsp" %>
 	<center>
 		<div class="container">
 

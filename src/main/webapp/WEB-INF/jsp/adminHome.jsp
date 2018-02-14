@@ -31,9 +31,9 @@
 <!--  library for toastr -->
 <script type="text/javascript"
 	src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
+<!-- <link -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" -->
+<!-- 	rel="stylesheet"> -->
 <script type="text/javascript"
 	src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <link
@@ -48,7 +48,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
-  <%@include file="header.jsp" %>
+  <%@include file="adminHeader.jsp" %>
   <% Student user=(Student)session.getAttribute("loggedInUser"); %>
 	<center>
 		<p id="logedInName">

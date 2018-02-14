@@ -1,6 +1,6 @@
-function postList() {
+function issueList() {
 	
-	var table =document.getElementById("posts_table_wrapper");
+	var table =document.getElementById("issues_table_wrapper");
 	if(table!=null) {
 		console.log("there....")
 		table.remove();
@@ -12,77 +12,78 @@ function postList() {
 		success : function(result, status) {
 			
 			
-			var postsTable=document.createElement("table");
-			postsTable.setAttribute("id", "posts_table");
-			postsTable.className='table table-striped table-bordered';
+			var issuesTable=document.createElement("table");
+			issuesTable.setAttribute("id", "issues_table");
+			issuesTable.className='table table-striped table-bordered';
 			
 			
 			var thead = document.createElement("thead");
 			var tr = document.createElement("tr");
 			
 			var td1 = document.createElement("th");
-			var txt = document.createTextNode("Post Id");
+			var txt = document.createTextNode("Issue Id");
 			td1.appendChild(txt);
 			tr.appendChild(td1);
 			
 			var td2 = document.createElement("th");
-			var txt = document.createTextNode("Post Type");
+			var txt = document.createTextNode("Issue Type");
 			td2.appendChild(txt);
 			tr.appendChild(td2);
             
 			var td3 = document.createElement("th");
-			var txt = document.createTextNode("Admin Name");
+			var txt = document.createTextNode("Issue");
+			td3.setAttribute("id", "issue_message");
 			td3.appendChild(txt);
 			tr.appendChild(td3);
 			
 			
 			var td4 = document.createElement("th");
-			var txt = document.createTextNode("Post");
+			var txt = document.createTextNode("Status");
 			td4.appendChild(txt);
-			td4.setAttribute("id", "post_message");
 			tr.appendChild(td4);
 			
 			
 			var td5 = document.createElement("th");
-			var txt = document.createTextNode("Posted Date");
+			var txt = document.createTextNode("Reported Date");
 			td5.appendChild(txt);
 			tr.appendChild(td5);
 
 			thead.appendChild(tr);
-			postsTable.appendChild(thead);
+			issuesTable.appendChild(thead);
+			
 
-
+			var filteredResult=result.filter(getLoggedInUserIssues);
 			
 			
 			var tbody = document.createElement("tbody");
 
-			for (var i = 0; i < result.length; i++) {
+			for (var i = 0; i < filteredResult.length; i++) {
 				var tr = document.createElement("tr");
-				tr.setAttribute("id", "row"+result[i].id);
+				tr.setAttribute("id", "row"+filteredResult[i].id);
 				var td1 = document.createElement("td");
-				var txt = document.createTextNode(result[i].id);
+				var txt = document.createTextNode(filteredResult[i].id);
 				td1.appendChild(txt);
 				tr.appendChild(td1);
 
 				var td2 = document.createElement("td");
-				var txt = document.createTextNode(result[i].postType);
+				var txt = document.createTextNode(filteredResult[i].issueType);
 				td2.appendChild(txt);
 				tr.appendChild(td2);
 
 				var td3 = document.createElement("td");
-				var txt = document.createTextNode(result[i].admin.name);
+				var txt = document.createTextNode(filteredResult[i].issue);
 				td3.appendChild(txt);
 				tr.appendChild(td3);
 				
 				var td4 = document.createElement("td");
-				var txt = document.createTextNode(result[i].post);
+				var txt = document.createTextNode(filteredResult[i].status);
 				td4.appendChild(txt);
 				tr.appendChild(td4);
 				
 				
 				
 				var td5 = document.createElement("td");
-				var date =new Date(result[i].postedDate);
+				var date =new Date(filteredResult[i].reportededDate);
 				var txt = document.createTextNode(date.toDateString());
 				td5.appendChild(txt);
 				tr.appendChild(td5);
@@ -90,11 +91,11 @@ function postList() {
 				tbody.appendChild(tr);
 
 			}
-			postsTable.appendChild(tbody);
-			console.log(postsTable);
-			var postsDivElement = document.getElementById("post_list");
-			postsDivElement.appendChild(postsTable);
-			$('#posts_table').DataTable();
+			issuesTable.appendChild(tbody);
+			console.log(issuesTable);
+			var issuesDivElement = document.getElementById("issue_list");
+			issuesDivElement.appendChild(issuesTable);
+			$('#issues_table').DataTable();
 		},
 		error : function(result, status) {
 			alert("Error occured : " + status);
@@ -103,11 +104,12 @@ function postList() {
 }
 
 
-function savePost() {
-	var data= $("#news_form").serialize();
+function saveIssue() {
+	//alert("post issues");
+	var data= $("#issue_form").serialize();
 	
 	$.ajax({
-		url : contextPath+'/savePost',
+		url : contextPath+'/saveIssue',
 		type : 'POST',
 		data : data,
 		success : function(result, status) {
@@ -118,7 +120,7 @@ function savePost() {
 		}
 	});
 	document.getElementById("text_area").value="";
-	var ele = document.getElementsByName("postType");
+	var ele = document.getElementsByName("issueType");
 	   for(var i=0;i<ele.length;i++)
 	      ele[i].checked = false;
 
@@ -128,7 +130,10 @@ function savePost() {
 
 
 
-
+function getLoggedInUserIssues(issue) {
+	var loggedInUserId = document.getElementById("id").value;
+	return issue.student_id== loggedInUserId;
+}
 
 
 

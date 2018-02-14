@@ -20,6 +20,7 @@ public class Issue {
 	@NotNull(message = "issue can not be empty")
 	@Column(length=512)
 	private String issue;
+	private String issueType;
     private Date reportedDate;
     private Date resolvedDate;
     private Date ignoredDate;
@@ -33,10 +34,11 @@ public class Issue {
     public Issue() {
 		super();
 	}
-	public Issue(Integer id, String issue, Date reportedDate, Date resolvedDate, Date ignoredDate,String status, Student student) {
+	public Issue(Integer id, String issue,String issueType, Date reportedDate, Date resolvedDate, Date ignoredDate,String status, Student student) {
 		super();
 		this.id = id;
 		this.issue = issue;
+		this.issueType = issueType;
 		this.reportedDate = reportedDate;
 		this.resolvedDate = resolvedDate;
 		this.ignoredDate = ignoredDate;
@@ -59,6 +61,14 @@ public class Issue {
 	public void setIssue(String issue) {
 		this.issue = issue;
 	}
+	public String getIssueType() {
+		return issueType;
+	}
+
+	public void setIssueType(String issueType) {
+		this.issueType = issueType;
+	}
+	
 	public String getStatus() {
 		return status;
 	}
@@ -102,7 +112,7 @@ public class Issue {
 	
 	@Override
 	public String toString() {
-		return "Issue [id=" + id + ", issue=" + issue + ", reportedDate=" + reportedDate + ", resolvedDate="
+		return "Issue [id=" + id + ", issue=" + issue + ",issueType="+issueType  + ", reportedDate=" + reportedDate + ", resolvedDate="
 				+ resolvedDate + ", ignoredDate=" + ignoredDate +", status=" +status + ", student=" + student + "]";
 	}	
 }

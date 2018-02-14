@@ -13,18 +13,19 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-	
+	 <%@include file="studentHeader.jsp" %>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 	 <% Student user=(Student)session.getAttribute("loggedInUser"); %>
+	 
 	
 	<center>
-		<div class="header">
-			<h2>Student Management Application</h2>
+<!-- 		<div class="header"> -->
+<!-- 			<h2>Student Management Application</h2> -->
 
-		</div>
+<!-- 		</div> -->
 
 		<p id="logedInName">
 			Logged in As: <b id="email"><%=user.getEmail() %></b>
@@ -60,5 +61,6 @@
 
 
 	</center>
+	 <%@include file="footer.jsp" %>
 </body>
 </html>

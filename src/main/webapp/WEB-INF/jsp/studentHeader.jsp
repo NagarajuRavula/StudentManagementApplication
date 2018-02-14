@@ -18,11 +18,12 @@ ul#nav_list {
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 10;
   
 }
-div#nav{
-  z-index: 1;
-}
+/* div#nav{ */
+/*   z-index: 10; */
+/* } */
 
 li {
     float: left;
@@ -45,7 +46,7 @@ li a:hover {
 }
 
 a#logout1{
-	margin-left: 550px;
+	margin-left: 780px;
 }
 .header{
 	background-color: #ceb291;
@@ -69,12 +70,12 @@ font-size: 30px;
  
 <div id="nav">
   <ul id="nav_list">
-  <li><a href= "${pageContext.request.contextPath}/adminHome">Home</a></li>
-  <li><a href="${pageContext.request.contextPath}/addStudent">Add Student</a></li>
+  <li><a href= "${pageContext.request.contextPath}/studentHome">Home</a></li>
+<%--   <li><a href="${pageContext.request.contextPath}/addStudent">Add Student</a></li> --%>
   <li><a href="${pageContext.request.contextPath}/editStudentDetails?email=<%=User.getEmail()%>">Profile</a></li>
-  <li><a href="${pageContext.request.contextPath}/studentReport">Student Report</a></li>
-  <li><a href="${pageContext.request.contextPath}/studentIssues">Student Issues</a></li>
-  <li><a href="${pageContext.request.contextPath}/addPost">Add Post</a></li>
+  <li><a href="${pageContext.request.contextPath}/addIssue">Report Issue</a></li>
+  <li><a href="${pageContext.request.contextPath}/adminNews">Announcements</a></li>
+<%--   <li><a href="${pageContext.request.contextPath}/addPost">Add Post</a></li> --%>
   <li><a id="logout1"  href=${pageContext.request.contextPath}/logout>Logout <i class="fa fa-sign-out"></i></a></li>
 </ul>
 </div>

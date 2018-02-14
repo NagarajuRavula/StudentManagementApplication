@@ -14,7 +14,7 @@
 <script src=${pageContext.request.contextPath}/js/studentReport.js></script>
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-<%@include file="header.jsp" %>
+<%@include file="adminHeader.jsp" %>
 <center>
 <div id="chartContainer_academicReport"></div>
 <div id="chartContainer_attendenceReport"></div>

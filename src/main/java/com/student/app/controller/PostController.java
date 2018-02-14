@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,9 +37,10 @@ public class PostController {
 	public ResponseEntity<String> savePost(@RequestParam("postType") String postType,@RequestParam("textArea") String post,ModelMap model,HttpServletRequest request,HttpServletResponse response) {
 		logger.info("savePost() entered");
 		System.out.println("----------------------------------------------->");
+		HttpHeaders httpHeaders = new HttpHeaders();
 		httpSession=request.getSession(false);
 		Student admin=(Student) httpSession.getAttribute("loggedInUser");
-		
+	
 		Post postObj=new Post();
 		postObj.setAdmin(admin);
 		postObj.setPost(post);
@@ -48,10 +50,14 @@ public class PostController {
 		postObj.setPostedDate(now);
 		int status=postService.savePost(postObj);
 		System.out.println("status----------------->:"+status);
-		if(status==1) 
-			return new ResponseEntity<String>("Posted Successfully!", HttpStatus.OK);
-		else
-			return new ResponseEntity<String>("Error Occurd!", HttpStatus.NOT_FOUND);
+		if(status==1)  {
+			httpHeaders.add("success", "record saved successfully!");
+			return new ResponseEntity<String>("Posted Successfully!", httpHeaders,HttpStatus.OK);
+		}
+		else {
+			httpHeaders.add("error", "Error occured while saving!");
+			return new ResponseEntity<String>("Error Occurd!",httpHeaders, HttpStatus.NOT_FOUND);
+		}
 		
 	}
 	

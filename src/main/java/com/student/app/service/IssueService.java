@@ -11,4 +11,6 @@ public interface IssueService {
 	public int issueToResolve(int id);
 	
 	public int issueToIgnore(int id);
+	
+	public int saveIssue(Issue issue);
 }

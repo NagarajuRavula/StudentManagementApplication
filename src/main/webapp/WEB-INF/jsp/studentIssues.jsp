@@ -51,7 +51,7 @@
 
 
 <body>
-<%@include file="header.jsp" %>
+<%@include file="adminHeader.jsp" %>
  <h3 id="title">Student Issues</h3>
  
  <div class="container">

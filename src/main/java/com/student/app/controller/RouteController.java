@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class RouteController {
 
-
+    //set of admin role routes
 	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
 	public String adminHome(HttpServletRequest request,HttpServletResponse response) {
 		return "adminHome";
@@ -30,6 +30,28 @@ public class RouteController {
 	public String addPost(HttpServletRequest request,HttpServletResponse response) {
 		return "postNews";
 	}
+	
+	
+	
+	
+	//set of student role routes
+	@RequestMapping(value = "/studentHome", method = RequestMethod.GET)
+	public String studentHome(HttpServletRequest request,HttpServletResponse response) {
+		return "studentHome";
+	}
+	
+	@RequestMapping(value = "/addIssue", method = RequestMethod.GET)
+	public String addIssue(HttpServletRequest request,HttpServletResponse response) {
+		return "postIssues";
+	}
+
+	@RequestMapping(value = "/adminNews", method = RequestMethod.GET)
+	public String adminNews(HttpServletRequest request,HttpServletResponse response) {
+		return "adminNews";
+	}
+
+
+	
 	
 	
 }
