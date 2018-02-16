@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
  
-  <bean id="studentServiceimpl" class="com.student.app.service.StudentServiceImpl" autowire="byType">
+  <bean id="studentServiceimpl" class="com.student.app.service.StudentServiceImpl" autowire="byType" >
   </bean>
   <bean id="authenticationController" class="com.student.app.controller.AuthenticationController" autowire="byType">
   </bean>

@@ -7,7 +7,7 @@ function issueList() {
 	}
 	console.log("table is not there");
 	$.ajax({
-		url : contextPath + '/post',
+		url : contextPath + '/issue',
 		type : 'GET',
 		success : function(result, status) {
 			
@@ -83,7 +83,7 @@ function issueList() {
 				
 				
 				var td5 = document.createElement("td");
-				var date =new Date(filteredResult[i].reportededDate);
+				var date =new Date(filteredResult[i].reportedDate);
 				var txt = document.createTextNode(date.toDateString());
 				td5.appendChild(txt);
 				tr.appendChild(td5);
@@ -132,7 +132,10 @@ function saveIssue() {
 
 function getLoggedInUserIssues(issue) {
 	var loggedInUserId = document.getElementById("id").value;
-	return issue.student_id== loggedInUserId;
+	//alert(loggedInUserId);
+	console.log(issue.student.id);
+	//console.log(issue.admin);
+	return issue.student.id== loggedInUserId;
 }
 
 
