@@ -26,7 +26,7 @@ public class IssueDaoImpl implements IssueDao {
 
 	@Override
 	public int issueToResolve(int id) {
-        logger.info("issueToResolve() entered:");
+        logger.info("issueToResolve() entered :");
         Issue issue=issueRepository.findOne(id);
         issue.setStatus("resolved");
         long nowMillis = System.currentTimeMillis();
