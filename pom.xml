@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<start-class>com.student.app.StudentManagementApplication</start-class>
 	</properties>
 
 	<dependencies>
@@ -107,6 +108,11 @@
       <artifactId>javax.servlet.jsp.jstl-api</artifactId>
       <version>1.2.1</version>
     </dependency>
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-tomcat</artifactId>
+		<scope>provided</scope>
+	</dependency>
 
     <dependency>
       <groupId>taglibs</groupId>
