@@ -1,10 +1,4 @@
-
-FROM java:8
+FROM tomcat:9.0.22-jdk8-openjdk
 MAINTAINER Nagaraju Ravula
-VOLUME /tmp
-ADD /target/StudentManagementApplication-0.0.1-SNAPSHOT.war StudentManagementApplication-0.0.1-SNAPSHOT.war
-EXPOSE 8081
-CMD ["java", "-jar", "StudentManagementApplication-0.0.1-SNAPSHOT.war"]
-
-
+COPY --from=build /target/StudentManagementApplication-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
 
