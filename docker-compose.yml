@@ -1,0 +1,22 @@
+#version: '3'
+#
+#services:
+#  db:
+#    image: mysql:5.6
+#    environment:
+#      MYSQL_ROOT_PASSWORD: system
+#      MYSQL_DATABASE: system
+#      MYSQL_USER: nagaraju
+#      MYSQL_PASSWORD: nagaraju
+#    ports:
+#      - "3307:3306"
+#    volumes:
+#     - ./db:/docker-entrypoint-initdb.d
+#   
+#  student-app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    links:
+#      - db
+#      
