@@ -19,8 +19,8 @@ public class Student {
 	@ApiModelProperty(hidden = true)
 	private Integer id;
 
-	@NotNull(message = "presentClass can not be empty")
-	private Integer presentClass;
+	@NotNull(message = "presentclass can not be empty")
+	private Integer presentclass;
 
 	@NotNull(message = "classrank can not be empty")
 	private Integer classrank;
@@ -39,7 +39,7 @@ public class Student {
 	private String email;
 
 	@NotNull(message = "fatherName can not be empty")
-	private String fatherName;
+	private String fathername;
 
 	@NotNull(message = "motherName can not be empty")
 	private String mothername;
@@ -62,13 +62,13 @@ public class Student {
 			String email, String fatherName, String mothername, String gender, String password, String role) {
 		super();
 		this.id = id;
-		this.presentClass = presentClass;
+		this.presentclass = presentClass;
 		this.classrank = classrank;
 		this.marks = marks;
 		this.attendence = attendence;
 		this.name = name;
 		this.email = email;
-		this.fatherName = fatherName;
+		this.fathername = fatherName;
 		this.mothername = mothername;
 		this.gender = gender;
 		this.password = password;
@@ -86,11 +86,11 @@ public class Student {
 	}
 
 	public Integer getPresentClass() {
-		return presentClass;
+		return presentclass;
 	}
 
 	public void setPresentClass(Integer presentClass) {
-		this.presentClass = presentClass;
+		this.presentclass = presentClass;
 	}
 
 	public Integer getClassrank() {
@@ -134,11 +134,11 @@ public class Student {
 	}
 
 	public String getFatherName() {
-		return fatherName;
+		return fathername;
 	}
 
 	public void setFatherName(String fatherName) {
-		this.fatherName = fatherName;
+		this.fathername = fatherName;
 	}
 
 	public String getMothername() {
@@ -175,8 +175,8 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", presentClass=" + presentClass + ", classrank=" + classrank + ", marks=" + marks
-				+ ", attendence=" + attendence + ", name=" + name + ", email=" + email + ", fatherName=" + fatherName
+		return "Student [id=" + id + ", presentClass=" + presentclass + ", classrank=" + classrank + ", marks=" + marks
+				+ ", attendence=" + attendence + ", name=" + name + ", email=" + email + ", fatherName=" + fathername
 				+ ", mothername=" + mothername + ", gender=" + gender + ", password=" + password + ", role=" + role
 				+ "]";
 	}
